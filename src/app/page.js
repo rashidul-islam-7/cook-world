@@ -2,6 +2,7 @@
 import React from 'react';
 import HomeHero from "@/components/HomePage/HomeHero";
 import FeaturedRecipes from '@/components/HomePage/FeaturedRecipes';
+import PopularRecipes from '@/components/HomePage/PopularRecipes';
 
 const HomePage = () => {
   return (
@@ -11,6 +12,9 @@ const HomePage = () => {
      </section>
      <section>
       <FeaturedRecipes />
+     </section>
+     <section>
+      <PopularRecipes />
      </section>
     </div>
   );
