@@ -3,6 +3,8 @@ import React from 'react';
 import HomeHero from "@/components/HomePage/HomeHero";
 import FeaturedRecipes from '@/components/HomePage/FeaturedRecipes';
 import PopularRecipes from '@/components/HomePage/PopularRecipes';
+import PremiumGiftOffer from '@/components/HomePage/PremiumGiftOffer';
+import JoinCommunity from '@/components/HomePage/JoinWithUs';
 
 const HomePage = () => {
   return (
@@ -16,6 +18,11 @@ const HomePage = () => {
      <section>
       <PopularRecipes />
      </section>
+
+      <PremiumGiftOffer />
+
+      <JoinCommunity />
+
     </div>
   );
 };
