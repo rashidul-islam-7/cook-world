@@ -61,7 +61,7 @@ const SignUpPage = () => {
         name: user.name,
         email: user.email,
         password: user.password,
-        role: user.role,
+        image: user.image,
         callbackURL: "/",
       });
 
@@ -136,6 +136,19 @@ const SignUpPage = () => {
             <Label>Email</Label>
             <Input className="w-full" placeholder="john@example.com" />
             <FieldError />
+          </TextField>
+
+          {/* image */}
+          <TextField name="image" type="url" className="w-full">
+            <Label htmlFor="image">Image URL</Label>
+
+            <Input
+              id="image"
+              className="w-full"
+              placeholder="https://example.com/image.jpg"
+            />
+
+            <FieldError>Please enter a valid image URL</FieldError>
           </TextField>
 
           <TextField
