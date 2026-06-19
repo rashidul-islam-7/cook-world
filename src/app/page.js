@@ -9,7 +9,9 @@ const HomePage = () => {
      <section>
       <HomeHero />
      </section>
-     
+     <section>
+      <FeaturedRecipes />
+     </section>
     </div>
   );
 };
