@@ -151,7 +151,7 @@
 import Link from "next/link";
 import { FaCrown, FaUsers, FaGift, FaCheckCircle } from "react-icons/fa";
 
-const  PremiumGiftOffer = ()=> {
+const PremiumGiftOffer = () => {
   return (
     <section className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16">
@@ -275,5 +275,5 @@ const  PremiumGiftOffer = ()=> {
       </div>
     </section>
   );
-}
+};
 export default PremiumGiftOffer;

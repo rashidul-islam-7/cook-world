@@ -81,7 +81,6 @@ const JoinCommunity = () => {
                 className="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-linear-to-r from-orange-500 to-amber-500 text-white font-bold tracking-wide shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-1 hover:brightness-110 active:translate-y-0 transition-all duration-300"
               >
                 Get Started Today
-                
               </Link>
             </div>
           </div>

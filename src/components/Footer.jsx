@@ -20,11 +20,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo & About */}
           <div>
-            <Link href="/">
-              <h2 className="text-3xl font-extrabold">
-                Cook<span className="text-orange-500">World</span>
-              </h2>
-            </Link>
+            <h2 className="text-3xl font-extrabold">
+              Cook<span className="text-orange-500">World</span>
+            </h2>
 
             <p className="mt-4 text-default-500 leading-relaxed text-sm">
               Discover, create, and share delicious recipes with food lovers

@@ -97,21 +97,13 @@ const HeroSection = () => {
           >
             {/* Main Image */}
             <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-              {/* <Image
-                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200"
-                alt="Food"
-                width={700}
-                height={700}
-                className="w-full h-[500px] object-cover"
-                priority
-              /> */}
 
-              <img
-                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200"
-                alt="Food"
+              <Image
+                src="https://i.ibb.co.com/dwxXhVQn/foods.jpg"
+                alt="Delicious plated food"
                 width={700}
                 height={700}
-                className="w-full h-[500px] object-cover"
+                className="w-full h-75 md:h-125 object-cover"
               />
             </div>
 
@@ -123,7 +115,7 @@ const HeroSection = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute top-5 left-0 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl p-4 flex items-center gap-3 border border-gray-100 dark:border-zinc-800 will-change-transform transform-gpu backface-hidden"
+              className="absolute top-5 left-5 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl p-4 flex items-center gap-3 border border-gray-100 dark:border-zinc-800 will-change-transform transform-gpu backface-hidden"
             >
               <BsFire className="text-2xl text-orange-500" />
               <div>

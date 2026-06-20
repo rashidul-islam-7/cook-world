@@ -37,12 +37,12 @@ const NavBar = () => {
 
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm px-5 sm:px-8 md:px-16">
+      <div className="navbar bg-base-100 shadow-sm px-2 sm:px-8 md:px-16">
         {/* Left */}
         <div className="navbar-start">
           {/* Mobile Menu */}
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className=" p-2 mr-2 lg:hidden">
               <RiMenu2Fill size={22} />
             </div>
 
@@ -94,9 +94,9 @@ const NavBar = () => {
           </div>
 
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold">
-            CookWorld
-          </Link>
+          <h2 className="text-2xl lg:text-3xl font-extrabold -ml-2 ">
+            Cook<span className="text-orange-500">World</span>
+          </h2>
         </div>
 
         {/* Center */}
