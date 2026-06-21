@@ -6,6 +6,7 @@ import PopularRecipes from '@/components/HomePage/PopularRecipes';
 import PremiumGiftOffer from '@/components/HomePage/PremiumGiftOffer';
 import JoinCommunity from '@/components/HomePage/JoinWithUs';
 import LoadingPage from '@/components/Loading';
+import BrowseRecipesPage from './recipes/page';
 
 const HomePage = () => {
   return (
@@ -24,7 +25,7 @@ const HomePage = () => {
 
       <JoinCommunity />
 
-      <LoadingPage />
+   
 
     </div>
   );
