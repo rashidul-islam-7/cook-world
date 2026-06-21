@@ -7,6 +7,7 @@ import { Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { AiFillLike } from "react-icons/ai";
 
 const popularRecipes = [
   {
@@ -141,7 +142,7 @@ const PopularRecipes = () => {
 
                   <div className="mt-4 flex items-center justify-between">
                     <div className="flex items-center gap-2 text-red-500">
-                      <FaHeart />
+                      <AiFillLike />
                       <span className="font-semibold">
                         {recipe.likesCount.toLocaleString()}
                       </span>
