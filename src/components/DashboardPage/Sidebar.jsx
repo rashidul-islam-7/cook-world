@@ -8,8 +8,8 @@ import {
   FaBook,
   FaHeart,
   FaUser,
-  FaBars,
   FaChessQueen,
+  FaCartPlus,
 } from "react-icons/fa";
 
 import { Avatar, Button, Drawer } from "@heroui/react";
@@ -23,19 +23,25 @@ const menuItems = [
     icon: FaHome,
   },
   {
-    name: "Add Recipe",
-    href: "/dashboard/add-recipe",
-    icon: FaPlusCircle,
-  },
-  {
     name: "My Recipes",
     href: "/dashboard/my-recipes",
     icon: FaBook,
   },
   {
-    name: "Favorites",
+    name: "Add Recipe",
+    href: "/dashboard/add-recipe",
+    icon: FaPlusCircle,
+  },
+
+  {
+    name: "My Favorites",
     href: "/dashboard/favorites",
     icon: FaHeart,
+  },
+  {
+    name: "My Purchased Recipes",
+    href: "/dashboard/purchased-recipes",
+    icon: FaCartPlus,
   },
   {
     name: "Profile",
@@ -112,12 +118,8 @@ const Sidebar = () => {
       {/* Mobile Drawer */}
       <div className="lg:hidden bg-gray-100/50 relative">
         <Drawer>
-          <Button
-            isIconOnly
-            variant="light"
-            className="absolute top-3 mb-20"
-          >
-            <PanelLeftClose size={22} />
+          <Button isIconOnly variant="light" className="p-2">
+            <PanelLeftClose />
           </Button>
 
           <Drawer.Backdrop>
