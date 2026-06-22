@@ -88,9 +88,7 @@ const SidebarContent = ({ pathname, user }) => (
               href={item.href}
               className={`flex items-center gap-2 rounded-sm px-4 py-1.5 transition-all duration-300
               ${
-                pathname === item.href
-                  ? "bg-orange-500 text-white"
-                  : "hover:bg-orange-100"
+                pathname === item.href ? "bg-orange-200" : "hover:bg-orange-100"
               }`}
             >
               <Icon size={18} />
