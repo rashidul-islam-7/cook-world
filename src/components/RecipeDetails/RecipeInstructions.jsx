@@ -1,6 +1,6 @@
 const RecipeInstructions = ({ recipe }) => {
   return (
-    <div className="rounded-3xl border p-6">
+    <div className="rounded-2xl border border-gray-300 p-6">
       <h2 className="text-2xl font-bold mb-5">
         Instructions
       </h2>

@@ -2,7 +2,7 @@ import { FaHeart, FaClock, FaUser } from "react-icons/fa";
 
 const RecipeInfo = ({ recipe }) => {
   return (
-    <div className="rounded-3xl border p-6">
+    <div className="rounded-2xl border border-gray-300 p-6">
       <h1 className="text-3xl font-bold">
         {recipe.recipeName}
       </h1>

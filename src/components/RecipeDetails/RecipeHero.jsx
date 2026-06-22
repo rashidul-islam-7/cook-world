@@ -6,7 +6,7 @@ const RecipeHero = ({ recipe }) => {
       <img
         src={recipe.recipeImage}
         alt={recipe.recipeName}
-        className="w-full h-[160px] md:h-[250px]  object-cover"
+        className="w-full h-[160px] md:h-[250px] object-cover"
       />
     </div>
   );

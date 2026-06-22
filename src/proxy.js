@@ -16,7 +16,7 @@ if(!session){
 }
  
 export const config = {
-  matcher: ["/dashboard", "/profile", ],
+  matcher: [ "/dashboard" ],
 
 //   "/recipes/:path"
 }
