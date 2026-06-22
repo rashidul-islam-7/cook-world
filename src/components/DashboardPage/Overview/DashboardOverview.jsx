@@ -24,7 +24,7 @@ export default function DashboardOverview() {
     <section>
       {/* Welcome Section */}
       <div className="mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold">Welcome Back 👋</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">Welcome Back</h1>
 
         <p className="mt-2 text-gray-500">
           Manage your recipes, favorites and premium membership.
@@ -32,7 +32,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* Premium Banner */}
-      <div className="mb-8 overflow-hidden rounded-3xl bg-linear-to-r from-orange-500 to-amber-500 p-6 text-white">
+      <div className="mb-6 overflow-hidden rounded-2xl bg-linear-to-r from-orange-500 to-amber-500 p-5 text-white">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
@@ -40,7 +40,7 @@ export default function DashboardOverview() {
               <h2 className="text-xl font-bold">Premium Membership</h2>
             </div>
 
-            <p className="mt-2 text-orange-50">
+            <p className="mt-1 text-orange-50">
               Unlock unlimited recipe uploads and premium features.
             </p>
           </div>
@@ -91,13 +91,13 @@ export default function DashboardOverview() {
       </div>
 
       {/* Optional Activity Section */}
-      <div className="mt-10 rounded-3xl border bg-white p-6">
+      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4">
         <h2 className="text-xl font-bold">Account Summary</h2>
 
-        <p className="mt-3 text-gray-500">
+        <p className="mt-1 text-gray-500">
           You have created{" "}
-          <span className="font-semibold">{stats.totalRecipes}</span> recipes
-          and received <span className="font-semibold">{stats.totalLikes}</span>{" "}
+          <span className="font-semibold text-black">{stats.totalRecipes}</span> recipes
+          and received <span className="font-semibold text-black">{stats.totalLikes}</span>{" "}
           likes from the community.
         </p>
       </div>
