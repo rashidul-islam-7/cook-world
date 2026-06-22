@@ -6,12 +6,12 @@ import { FaHeart, FaClock } from "react-icons/fa";
 
 const RecipeCard = ({ recipe }) => {
   return (
-    <div className="group overflow-hidden rounded-b-2xl bg-white shadow ">
+    <div className="group overflow-hidden rounded-2xl bg-white shadow ">
       <div className="relative overflow-hidden">
         <img
           src={recipe.recipeImage}
           alt={recipe.recipeName}
-          className=" border h-48 w-full object-cover transition duration-500 group-hover:scale-110"
+          className=" h-48 w-full object-cover transition duration-500 group-hover:scale-110 rounded-t-2xl "
         />
 
         <span className="absolute top-2 right-2 rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-orange-600">

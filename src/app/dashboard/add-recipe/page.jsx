@@ -1,7 +1,17 @@
-import React from "react";
+import RecipeForm from "@/components/DashboardPage/AddRecipe/RecipeForm";
 
-const Add_RecipePage = () => {
-  return <div>Add_RecipePage</div>;
-};
+export default function AddRecipePage() {
+  return (
+    <section className="max-w-7xl mx-auto">
+      <div className="mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold">Add New Recipe</h1>
 
-export default Add_RecipePage;
+        <p className="mt-1 text-gray-500">
+          Share your favorite recipe with the CookWorld community.
+        </p>
+      </div>
+
+      <RecipeForm />
+    </section>
+  );
+}
