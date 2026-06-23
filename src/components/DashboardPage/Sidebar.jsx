@@ -12,9 +12,12 @@ import {
   FaCartPlus,
 } from "react-icons/fa";
 
+import { IoLogOutOutline } from "react-icons/io5";
+
 import { Avatar, Button, Drawer } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { PanelLeftClose } from "lucide-react";
+import Logout from "../Logout";
 
 const menuItems = [
   {
@@ -48,6 +51,7 @@ const menuItems = [
     href: "/dashboard/profile",
     icon: FaUser,
   },
+
 ];
 
 const SidebarContent = ({ pathname, user }) => (
@@ -97,6 +101,7 @@ const SidebarContent = ({ pathname, user }) => (
           </li>
         );
       })}
+      <Logout />
     </ul>
   </div>
 );

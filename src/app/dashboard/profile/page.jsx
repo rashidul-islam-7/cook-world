@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 import { useState } from "react";
 import {
   FaUserCircle,
@@ -134,9 +135,11 @@ const ProfilePage = () => {
               CookWorld.
             </p>
 
-            <button className="mt-6 rounded-xl bg-white px-6 py-3 font-semibold text-orange-600 transition hover:bg-orange-100">
-              Buy Premium
-            </button>
+            <Link href={"/payment"}>
+              <button className="mt-6 rounded-xl bg-white px-6 py-3 font-semibold text-orange-600 transition hover:bg-orange-100">
+                Buy Premium
+              </button>
+            </Link>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">

@@ -1,11 +1,3 @@
-// import React from "react";
-
-// const DashboardOverview = () => {
-//   return <div>DashboardOverview</div>;
-// };
-
-// export default DashboardOverview;
-
 "use client";
 
 import { FaBookOpen, FaHeart, FaThumbsUp, FaCrown } from "react-icons/fa";
@@ -96,8 +88,9 @@ export default function DashboardOverview() {
 
         <p className="mt-1 text-gray-500">
           You have created{" "}
-          <span className="font-semibold text-black">{stats.totalRecipes}</span> recipes
-          and received <span className="font-semibold text-black">{stats.totalLikes}</span>{" "}
+          <span className="font-semibold text-black">{stats.totalRecipes}</span>{" "}
+          recipes and received{" "}
+          <span className="font-semibold text-black">{stats.totalLikes}</span>{" "}
           likes from the community.
         </p>
       </div>

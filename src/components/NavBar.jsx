@@ -4,19 +4,14 @@ import Link from "next/link";
 import React from "react";
 import { RiMenu2Fill } from "react-icons/ri";
 import { usePathname, useRouter } from "next/navigation";
-import { useSession, signOut } from "@/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
+import { Avatar } from "@heroui/react";
 
 const NavBar = () => {
   const pathname = usePathname();
-  const router = useRouter();
 
   const { data, isPending } = useSession();
   const user = data?.user;
-
-  const handleLogout = async () => {
-    await signOut();
-    router.push("/signin");
-  };
 
   const navLinks = [
     {
@@ -79,9 +74,11 @@ const NavBar = () => {
 
                     <li>
                       <Link
-                        href="/profile"
+                        href="/dashboard/profile"
                         className={
-                          pathname === "/profile" ? activeClass : normalClass
+                          pathname === "/dashboard/profile"
+                            ? activeClass
+                            : normalClass
                         }
                       >
                         Profile
@@ -94,9 +91,9 @@ const NavBar = () => {
           </div>
 
           {/* Logo */}
-          <h2 className="text-2xl lg:text-3xl font-extrabold -ml-2 ">
+          <Link href={"/"} className="text-2xl lg:text-3xl font-extrabold -ml-2 ">
             Cook<span className="text-orange-500">World</span>
-          </h2>
+          </Link>
         </div>
 
         {/* Center */}
@@ -128,9 +125,11 @@ const NavBar = () => {
 
                 <li>
                   <Link
-                    href="/profile"
+                    href="/dashboard/profile"
                     className={
-                      pathname === "/profile" ? activeClass : normalClass
+                      pathname === "/dashboard/profile"
+                        ? activeClass
+                        : normalClass
                     }
                   >
                     Profile
@@ -146,24 +145,30 @@ const NavBar = () => {
           {isPending ? (
             <span className="loading loading-spinner loading-md"></span>
           ) : user ? (
-            <div className="flex items-center gap-3">
-              <p className="hidden md:block font-medium uppercase">
-                {user.name}
-              </p>
+            <Link href={"/dashboard"}>
+              <div className="flex items-center gap-2">
+                <p className="hidden md:block font-medium ">{user.name}</p>
 
-              <button
-                onClick={handleLogout}
-                className="border border-orange-300 px-4 py-1.5 rounded-lg hover:bg-orange-400 hover:text-white transition-all duration-300 cursor-pointer"
-              >
-                Logout
-              </button>
-            </div>
+                <Avatar className="border-2 border-gray-400">
+                  {user?.image ? (
+                    <Avatar.Image
+                      alt="John Doe"
+                      src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
+                    />
+                  ) : (
+                    <Avatar.Fallback>
+                      {user?.name.slice(0, 2).toUpperCase()}
+                    </Avatar.Fallback>
+                  )}
+                </Avatar>
+              </div>
+            </Link>
           ) : (
             <div className="flex items-center gap-3">
               <Link
                 href="/signin"
                 className={`font-medium ${
-                  pathname === "/signin" ? "text-orange-400" : "text-[#097d77]"
+                  pathname === "/signin" ? "text-orange-400" : "text-black"
                 }`}
               >
                 Login
