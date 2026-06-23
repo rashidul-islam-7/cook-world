@@ -12,8 +12,6 @@ import {
   FaCartPlus,
 } from "react-icons/fa";
 
-import { IoLogOutOutline } from "react-icons/io5";
-
 import { Avatar, Button, Drawer } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { PanelLeftClose } from "lucide-react";
@@ -51,7 +49,6 @@ const menuItems = [
     href: "/dashboard/profile",
     icon: FaUser,
   },
-
 ];
 
 const SidebarContent = ({ pathname, user }) => (
@@ -61,10 +58,7 @@ const SidebarContent = ({ pathname, user }) => (
       <div className="relative">
         <Avatar>
           {user?.image ? (
-            <Avatar.Image
-              alt="John Doe"
-              src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-            />
+            <Avatar.Image alt={user?.name} src={user?.image} />
           ) : (
             <Avatar.Fallback>
               {user?.name.slice(0, 2).toUpperCase()}

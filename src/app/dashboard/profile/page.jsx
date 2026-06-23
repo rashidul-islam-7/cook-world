@@ -19,7 +19,6 @@ const ProfilePage = () => {
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  console.log(user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +47,7 @@ const ProfilePage = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative">
               <img
-                src={image}
+                src={user?.image}
                 alt="profile"
                 className="h-28 w-28 rounded-full border-4 border-orange-100 object-cover"
               />

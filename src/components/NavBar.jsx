@@ -31,8 +31,8 @@ const NavBar = () => {
     "text-base hover:text-orange-300 transition-colors duration-200";
 
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm px-2 sm:px-8 md:px-16">
+    <div className="relative">
+      <div className="navbar bg-base-100 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0 w-full z-50 ">
         {/* Left */}
         <div className="navbar-start">
           {/* Mobile Menu */}
@@ -91,7 +91,10 @@ const NavBar = () => {
           </div>
 
           {/* Logo */}
-          <Link href={"/"} className="text-2xl lg:text-3xl font-extrabold -ml-2 ">
+          <Link
+            href={"/"}
+            className="text-2xl lg:text-3xl font-extrabold -ml-2 "
+          >
             Cook<span className="text-orange-500">World</span>
           </Link>
         </div>
@@ -147,14 +150,12 @@ const NavBar = () => {
           ) : user ? (
             <Link href={"/dashboard"}>
               <div className="flex items-center gap-2">
-                <p className="hidden md:block font-medium ">{user.name}</p>
-
+                <p className="hidden md:block font-medium ">{user?.name}</p>
                 <Avatar className="border-2 border-gray-400">
                   {user?.image ? (
-                    <Avatar.Image
-                      alt="John Doe"
-                      src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-                    />
+                    <Avatar>
+                      <Avatar.Image alt={user?.name} src={user?.image} />
+                    </Avatar>
                   ) : (
                     <Avatar.Fallback>
                       {user?.name.slice(0, 2).toUpperCase()}

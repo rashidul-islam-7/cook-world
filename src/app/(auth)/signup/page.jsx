@@ -94,17 +94,11 @@ const SignUpPage = () => {
         </div>
 
         {/* Google Sign Up */}
-        <GoogleSignUpButton>Sign up with Google</GoogleSignUpButton>
+        <GoogleSignUpButton></GoogleSignUpButton>
 
         {/* Divider */}
-        <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-white/10" />
-          </div>
-
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className=" px-3 text-gray-400">Or</span>
-          </div>
+        <div className="flex w-full flex-col">
+          <div className="divider text-[12px]">OR</div>
         </div>
 
         {/* Error Message */}
@@ -126,7 +120,7 @@ const SignUpPage = () => {
           <TextField isRequired name="name" type="text">
             <Label>Username</Label>
             <Input
-              className="w-full"
+              className="w-full rounded-xl shadow border-none"
               aria-label="Name"
               placeholder="John Doe"
             />
@@ -134,17 +128,20 @@ const SignUpPage = () => {
 
           <TextField isRequired name="email" type="email">
             <Label>Email</Label>
-            <Input className="w-full" placeholder="john@example.com" />
+            <Input
+              className="w-full rounded-xl shadow border-none"
+              placeholder="john@example.com"
+            />
             <FieldError />
           </TextField>
 
           {/* image */}
-          <TextField name="image" type="url" className="w-full">
+          <TextField name="image" type="url" className="w-full ">
             <Label htmlFor="image">Image URL</Label>
 
             <Input
               id="image"
-              className="w-full"
+              className=" w-full rounded-xl shadow border-none"
               placeholder="https://example.com/image.jpg"
             />
 
@@ -198,12 +195,12 @@ const SignUpPage = () => {
             <FieldError />
           </TextField>
 
-          <button
+          <Button
             type="submit"
-            className="cursor-pointer mt-2 h-12 w-full rounded-xl bg-blue-600 font-medium text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/25"
+            className="cursor-pointer mt-2 h-12 w-full rounded-full text-base bg-blue-600 font-medium text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/25"
           >
             {isLoading ? "Creating account..." : "Create an account"}
-          </button>
+          </Button>
         </Form>
 
         {/* Footer */}

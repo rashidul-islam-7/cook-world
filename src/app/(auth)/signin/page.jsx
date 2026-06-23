@@ -90,17 +90,10 @@ const SignInPage = () => {
         </div>
 
         {/* Google Login */}
-        <GoogleSignUpButton>Sign in with Google</GoogleSignUpButton>
+        <GoogleSignUpButton></GoogleSignUpButton>
 
-        {/* Divider */}
-        <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-white/10" />
-          </div>
-
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="px-3 text-gray-400">Or</span>
-          </div>
+        <div className="flex w-full flex-col">
+          <div className="divider text-[12px]">OR</div>
         </div>
 
         {/* Error */}
@@ -121,9 +114,10 @@ const SignInPage = () => {
         <Form onSubmit={onSubmit} className="flex flex-col gap-5">
           <TextField isRequired name="email" type="email">
             <Label>Email</Label>
-
-            <Input className="w-full" placeholder="john@example.com" />
-
+            <Input
+              className="w-full rounded-xl shadow border-none"
+              placeholder="john@example.com"
+            />
             <FieldError />
           </TextField>
 
@@ -146,6 +140,7 @@ const SignInPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
+                className="w-full rounded-xl"
               />
 
               <InputGroup.Suffix className="pr-0">
@@ -174,7 +169,7 @@ const SignInPage = () => {
           <Button
             type="submit"
             isLoading={isLoading}
-            className="mt-2 h-12 w-full bg-blue-600 text-white"
+            className="mt-2 h-12 w-full bg-blue-500  text-white text-base"
           >
             {isLoading ? "Signing in..." : "Sign In"}
           </Button>

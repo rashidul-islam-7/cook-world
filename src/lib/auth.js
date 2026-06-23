@@ -9,47 +9,53 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    },
+  },
+  
   database: mongodbAdapter(db, {
     client,
   }),
 
   user: {
-  additionalFields: {
-    role: {
-      type: "string",
-      default: "user",
-       input: false
-    },
+    additionalFields: {
+      role: {
+        type: "string",
+        default: "user",
+        input: false,
+      },
 
-    isPremium: {
-      type: "boolean",
-      default: false,
-       input: false
-    },
+      isPremium: {
+        type: "boolean",
+        default: false,
+        input: false,
+      },
 
-    isBlocked: {
-      type: "boolean",
-      default: false,
-       input: false
+      isBlocked: {
+        type: "boolean",
+        default: false,
+        input: false,
+      },
     },
   },
-},
 
-databaseHooks: {
+  databaseHooks: {
     user: {
       create: {
         before: async (user) => {
           return {
             data: {
               ...user,
-              role: "user",        
-              isBlocked: false,    
-              isPremium: false,    
+              role: "user",
+              isBlocked: false,
+              isPremium: false,
             },
           };
         },
       },
     },
   },
-  
 });
