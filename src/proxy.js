@@ -16,7 +16,13 @@ if(!session){
 }
  
 export const config = {
-  matcher: [ "/dashboard" ],
-
-//   "/recipes/:path"
+  matcher: [
+    "/dashboard",
+    "/dashboard/my-recipes",
+    "/dashboard/add-recipe",
+    "/dashboard/favorites",
+    "/dashboard/purchased-recipes",
+    "/dashboard/profile",
+    "/recipes/:path*",
+  ],
 }

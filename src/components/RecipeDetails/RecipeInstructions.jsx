@@ -6,7 +6,7 @@ const RecipeInstructions = ({ recipe }) => {
       </h2>
 
       <p className="leading-8 text-gray-600">
-        {recipe.instructions}
+        {recipe?.instructions}
       </p>
     </div>
   );

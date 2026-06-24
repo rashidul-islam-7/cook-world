@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import { FaUsers } from "react-icons/fa";
 import { MdRestaurantMenu } from "react-icons/md";
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiFillLike } from "react-icons/ai";
 import { GiChefToque } from "react-icons/gi";
 import { BsFire } from "react-icons/bs";
 import { FaBowlFood } from "react-icons/fa6";
@@ -53,7 +53,7 @@ const HeroSection = () => {
               </Link>
 
               <Link
-                href="/dashboard/add-recipe"
+                href="/dashboard"
                 className="px-7 py-3 rounded-xl border border-orange-500 text-orange-500 font-medium hover:bg-orange-500 hover:text-white transition-all duration-300 text-center"
               >
                 Share Recipe
@@ -61,27 +61,27 @@ const HeroSection = () => {
             </div>
 
             {/* Stats */}
-            <div className="mt-10 grid grid-cols-3 gap-6 max-w-lg">
-              <div className="flex items-center gap-3">
-                <MdRestaurantMenu className="text-3xl text-orange-500" />
+            <div className="mt-10 grid grid-cols-3 gap-3 md:gap-6 max-w-auto">
+              <div className="flex items-center justify-center gap-3 py-2 rounded md:rounded-xl shadow bg-black/10">
+                <MdRestaurantMenu className="hidden md:block text-3xl text-orange-500" />
                 <div>
                   <h3 className="text-2xl font-bold">10K+</h3>
                   <p className="text-sm text-default-500">Recipes</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 ">
-                <FaUsers className="text-3xl text-orange-500" />
+              <div className="flex items-center justify-center gap-3  py-2 rounded md:rounded-xl shadow bg-black/10">
+                <FaUsers className="hidden md:block text-3xl text-orange-500" />
                 <div>
-                  <h3 className="text-2xl font-bold">5K+</h3>
+                  <h3 className="text-2xl font-bold">5M+</h3>
                   <p className="text-sm text-default-500">Food Lovers</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <AiFillHeart className="text-3xl text-orange-500" />
+              <div className="flex items-center justify-center gap-4  py-2 rounded md:rounded-xl shadow bg-black/10">
+                <AiFillLike className="hidden md:block text-3xl text-orange-500" />
                 <div>
-                  <h3 className="text-2xl font-bold">25K+</h3>
+                  <h3 className="text-2xl font-bold">42K+</h3>
                   <p className="text-sm text-default-500">Likes Shared</p>
                 </div>
               </div>
@@ -97,7 +97,6 @@ const HeroSection = () => {
           >
             {/* Main Image */}
             <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-
               <Image
                 src="https://i.ibb.co.com/dwxXhVQn/foods.jpg"
                 alt="Delicious plated food"

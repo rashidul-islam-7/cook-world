@@ -3,7 +3,7 @@ import DashboardOverview from "@/components/DashboardPage/Overview/DashboardOver
 
 const DashboardPage = () => {
   return (
-    <div>
+    <div className="pt-20">
       <DashboardOverview />
     </div>
   );

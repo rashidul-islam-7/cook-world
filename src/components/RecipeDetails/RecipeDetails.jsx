@@ -4,7 +4,7 @@ import RecipeIngredients from "@/components/RecipeDetails/RecipeIngredients";
 import RecipeInstructions from "@/components/RecipeDetails/RecipeInstructions";
 import RecipeActions from "@/components/RecipeDetails/RecipeActions";
 
-const RecipeDetails = async ({ recipe = [] }) => {
+const RecipeDetails = async ({ recipe }) => {
   return (
     <section className="pb-16">
       <RecipeHero recipe={recipe} />

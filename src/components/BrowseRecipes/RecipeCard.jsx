@@ -1,16 +1,19 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { AiFillLike } from "react-icons/ai";
-import { FaHeart, FaClock } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 const RecipeCard = ({ recipe }) => {
   return (
     <div className="group overflow-hidden rounded-2xl bg-white shadow ">
       <div className="relative overflow-hidden">
-        <img
+        <Image
           src={recipe.recipeImage}
           alt={recipe.recipeName}
+          height={250}
+          width={300}
           className=" h-48 w-full object-cover transition duration-500 group-hover:scale-110 rounded-t-2xl "
         />
 

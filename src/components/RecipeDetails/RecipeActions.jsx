@@ -1,5 +1,6 @@
 "use client";
 
+import { AiFillLike } from "react-icons/ai";
 import {
   FaHeart,
   FaStar,
@@ -11,7 +12,7 @@ const RecipeActions = () => {
   return (
     <div className="mt-6 space-y-3">
       <button className="btn w-full bg-red-500 hover:bg-red-700 text-white">
-        <FaHeart />
+        <AiFillLike />
         Like Recipe
       </button>
 

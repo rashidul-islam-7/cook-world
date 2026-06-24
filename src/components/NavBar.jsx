@@ -148,7 +148,7 @@ const NavBar = () => {
           {isPending ? (
             <span className="loading loading-spinner loading-md"></span>
           ) : user ? (
-            <Link href={"/dashboard"}>
+            <Link href={"/dashboard/profile"}>
               <div className="flex items-center gap-2">
                 <p className="hidden md:block font-medium ">{user?.name}</p>
                 <Avatar className="border-2 border-gray-400">

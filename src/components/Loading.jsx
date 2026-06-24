@@ -1,7 +1,7 @@
 "use client";
 import { IoFastFoodSharp } from "react-icons/io5";
 
-const LoadingPage = () => {
+const Loading = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-white">
       <div className="flex flex-col items-center">
@@ -39,4 +39,4 @@ const LoadingPage = () => {
   );
 };
 
-export default LoadingPage;
+export default Loading;
