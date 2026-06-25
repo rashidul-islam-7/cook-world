@@ -41,7 +41,6 @@ const FeaturedRecipes = async () => {
     .sort((a, b) => b.likeCount - a.likeCount)
     .slice(0, 4);
 
-    console.log(topRecipes)
 
   return (
     <section className="py-20">

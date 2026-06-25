@@ -1,14 +1,19 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 
-const RecipeForm = () => {
-  const [imagePreview, setImagePreview] = useState("");
+const RecipeForm = ({ recipe }) => {
+  const isUpdate = !!recipe;
+
+  const [imagePreview, setImagePreview] = useState(recipe?.recipeImage || "");
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
@@ -28,27 +33,30 @@ const RecipeForm = () => {
     try {
       setLoading(true);
 
-      if (!imageFile) {
-        alert("Please select an image");
-        return;
+      let imageUrl = recipe?.recipeImage || "";
+
+      // New image upload only if selected
+      if (imageFile) {
+        const imageFormData = new FormData();
+        imageFormData.append("image", imageFile);
+
+        const imageRes = await fetch(
+          `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+          {
+            method: "POST",
+            body: imageFormData,
+          },
+        );
+
+        const imageData = await imageRes.json();
+        imageUrl = imageData.data.display_url;
       }
 
-      // Upload image to ImgBB
-      const imageFormData = new FormData();
-      imageFormData.append("image", imageFile);
-      console.log(process.env.NEXT_PUBLIC_IMGBB_API_KEY);
-
-      const imageRes = await fetch(
-        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
-        {
-          method: "POST",
-          body: imageFormData,
-        },
-      );
-
-      const imageData = await imageRes.json();
-
-      const imageUrl = imageData.data.display_url;
+      // Add page হলে image required
+      if (!imageUrl) {
+        toast.error("Please select an image");
+        return;
+      }
 
       const form = e.target;
 
@@ -69,39 +77,62 @@ const RecipeForm = () => {
 
         instructions: form.instructions.value,
 
-        // User info
         authorId: user?.id,
         authorName: user?.name,
         authorEmail: user?.email,
 
-        likesCount: 0,
-        isFeatured: false,
-        status: "pending",
-
-        createdAt: new Date(),
         updatedAt: new Date(),
       };
 
-      const res = await fetch("http://localhost:8000/recipes", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(recipeData),
-      });
+      // UPDATE
+      if (isUpdate) {
+        const res = await fetch(`http://localhost:8000/recipes/${recipe._id}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(recipeData),
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (data.insertedId) {
-        toast("Recipe added successfully!");
+        if (data.modifiedCount > 0) {
+          toast.success("Recipe updated successfully!");
+          router.push("/dashboard/my-recipes");
+        }
+      }
 
-        form.reset();
-        setImagePreview("");
-        setImageFile(null);
+      // ADD
+      else {
+        const newRecipe = {
+          ...recipeData,
+          likesCount: 0,
+          isFeatured: false,
+          status: "pending",
+          createdAt: new Date(),
+        };
+
+        const res = await fetch("http://localhost:8000/recipes", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newRecipe),
+        });
+
+        const data = await res.json();
+
+        if (data.insertedId) {
+          toast.success("Recipe added successfully!");
+
+          form.reset();
+          setImagePreview("");
+          setImageFile(null);
+        }
       }
     } catch (error) {
       console.log(error);
-      alert("Something went wrong");
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -109,7 +140,7 @@ const RecipeForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-8 lg:grid-cols-3">
-      {/* Form */}
+      {/* FORM */}
       <div className="lg:col-span-2 rounded-2xl border border-gray-200 bg-white p-4 md:p-6 shadow-sm">
         <div className="grid gap-5 md:grid-cols-2">
           {/* Recipe Name */}
@@ -120,7 +151,7 @@ const RecipeForm = () => {
               name="recipeName"
               required
               type="text"
-              placeholder="Chicken Biryani"
+              defaultValue={recipe?.recipeName}
               className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>
@@ -132,6 +163,7 @@ const RecipeForm = () => {
             <select
               name="category"
               required
+              defaultValue={recipe?.category}
               className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
             >
               <option value="">Select Category</option>
@@ -151,7 +183,7 @@ const RecipeForm = () => {
               name="cuisineType"
               required
               type="text"
-              placeholder="Bangladeshi"
+              defaultValue={recipe?.cuisineType}
               className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>
@@ -163,6 +195,7 @@ const RecipeForm = () => {
             <select
               name="difficultyLevel"
               required
+              defaultValue={recipe?.difficultyLevel}
               className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
             >
               <option>Easy</option>
@@ -181,7 +214,7 @@ const RecipeForm = () => {
               name="preparationTime"
               required
               type="number"
-              placeholder="30"
+              defaultValue={recipe?.preparationTime}
               className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>
@@ -193,13 +226,16 @@ const RecipeForm = () => {
             <label className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-5 text-center hover:border-orange-500">
               <FaCloudUploadAlt className="text-4xl text-orange-500" />
 
-              <p className="mt-2">Click to upload recipe image</p>
+              <p className="mt-2">
+                {isUpdate
+                  ? "Upload new image (optional)"
+                  : "Click to upload recipe image"}
+              </p>
 
               <input
                 type="file"
                 accept="image/*"
                 hidden
-                required
                 onChange={handleImage}
               />
             </label>
@@ -213,7 +249,7 @@ const RecipeForm = () => {
               name="ingredients"
               required
               rows={3}
-              placeholder="Chicken, Rice, Onion, Garlic"
+              defaultValue={recipe?.ingredients?.join(", ")}
               className="w-full rounded-xl border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>
@@ -226,7 +262,7 @@ const RecipeForm = () => {
               name="instructions"
               required
               rows={5}
-              placeholder="Write cooking instructions..."
+              defaultValue={recipe?.instructions}
               className="w-full rounded-xl border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>
@@ -237,11 +273,17 @@ const RecipeForm = () => {
           type="submit"
           className="mt-5 w-full rounded-xl bg-orange-500 py-3 font-semibold text-white transition hover:bg-orange-600 disabled:opacity-60"
         >
-          {loading ? "Adding Recipe..." : "Create Recipe"}
+          {loading
+            ? isUpdate
+              ? "Updating..."
+              : "Adding..."
+            : isUpdate
+              ? "Update Recipe"
+              : "Create Recipe"}
         </button>
       </div>
 
-      {/* Preview */}
+      {/* PREVIEW */}
       <div className="h-fit rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
         <h3 className="text-xl font-bold">Recipe Preview</h3>
 
@@ -254,17 +296,6 @@ const RecipeForm = () => {
             alt="preview"
             className="h-56 w-full object-cover"
           />
-        </div>
-
-        <div className="mt-5 rounded-2xl bg-orange-50 p-4">
-          <h4 className="font-semibold text-orange-600">Tips</h4>
-
-          <ul className="mt-2 list-disc space-y-1 px-4 text-sm text-gray-600">
-            <li>Use high quality image</li>
-            <li>Add clear instructions</li>
-            <li>Include all ingredients</li>
-            <li>Mention preparation time</li>
-          </ul>
         </div>
       </div>
     </form>

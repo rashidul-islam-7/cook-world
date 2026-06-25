@@ -61,7 +61,7 @@ export default function BrowseRecipesPage() {
   }, [recipes, selectedCategory, searchText]);
 
   return (
-    <section className="py-16">
+    <section className="py-16 mt-20">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16">
         {/* Header */}
         <div className="text-center mb-12">
@@ -91,21 +91,21 @@ export default function BrowseRecipesPage() {
           />
         </section>
         {/* Recipe Grid OR Empty State */}
-        {filteredRecipes.length > 0 ? (
+        {filteredRecipes?.length > 0 ? (
           <>
             {/* Results Count */}
             <div className="mb-6">
               <p className="text-base text-gray-500">
                 Found{" "}
                 <span className="font-semibold text-orange-500">
-                  {filteredRecipes.length}
+                  {filteredRecipes?.length}
                 </span>{" "}
                 recipes
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
-              {filteredRecipes.map((recipe) => (
+              {filteredRecipes?.map((recipe) => (
                 <RecipeCard key={recipe._id} recipe={recipe} />
               ))}
             </div>

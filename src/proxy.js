@@ -23,6 +23,5 @@ export const config = {
     "/dashboard/favorites",
     "/dashboard/purchased-recipes",
     "/dashboard/profile",
-    "/recipes/:path*",
   ],
 }

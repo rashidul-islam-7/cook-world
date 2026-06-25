@@ -52,7 +52,7 @@ const menuItems = [
 ];
 
 const SidebarContent = ({ pathname, user }) => (
-  <div className="h-full flex flex-col">
+  <div className="h-full flex flex-col pt-20">
     {/* user imag & name */}
     <div className="border-b border-b-gray-200 px-6 py-3 flex items-center gap-2">
       <div className="relative">

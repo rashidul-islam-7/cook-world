@@ -3,13 +3,7 @@
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
-import {
-  FaUserCircle,
-  FaCrown,
-  FaCheckCircle,
-  FaCamera,
-  FaChessQueen,
-} from "react-icons/fa";
+import { FaCrown, FaCheckCircle, FaCamera, FaChessQueen } from "react-icons/fa";
 
 const ProfilePage = () => {
   const [name, setName] = useState("Rashid Islam");
@@ -22,11 +16,6 @@ const ProfilePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log({
-      name,
-      image,
-    });
   };
 
   return (

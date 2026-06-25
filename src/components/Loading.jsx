@@ -20,7 +20,7 @@ const Loading = () => {
           Cook<span className="text-orange-500">World</span>
         </h2>
 
-        <p className=" text-gray-500">Preparing Delicious Recipes...</p>
+        <p className=" text-gray-500">Loading Recipes...</p>
 
         {/* Dots Loader */}
         <div className="mt-3 flex gap-2">

@@ -7,7 +7,7 @@ const RecipeDetailsPage = async ({ params }) => {
   const recipesData = await getAllRecipes();
 
   const recipe = recipesData.find((item) => item._id === id);
-  console.log(recipe);
+
   return (
     <div>
       <RecipeDetails recipe={recipe} />

@@ -1,9 +1,9 @@
 
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export const getAllRecipes = async () => {
-  const res = await fetch(`http://localhost:8000/recipes`, {
+  const res = await fetch(`${API_URL}/recipes`, {
     cache: "no-store",
   });
 
@@ -27,7 +27,60 @@ export const getRecipeById = async (id) => {
 };
 
 
+export const getMyRecipes = async (email) => {
+  try {
+    const res = await fetch(
+      `${API_URL}/my-recipes?email=${email}`
+    );
 
+    if (!res.ok) {
+      throw new Error("Failed to fetch recipes");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export const deleteMyRecipe = async (id) => {
+  try {
+    const res = await fetch(
+      `${API_URL}/recipes/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to delete recipe");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+
+
+// export const updateRecipe = async (id, updateData) => {
+//   const res = await fetch(`${API_URL}/recipes/${id}`, {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(updateData),
+//   });
+
+//   if (!res.ok) {
+//     throw new Error("Failed to update recipe");
+//   }
+
+//   return res.json();
+// };
 
 
 // const recipes = [
