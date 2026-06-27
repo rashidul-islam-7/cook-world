@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 
 const RecipeForm = ({ recipe }) => {
   const isUpdate = !!recipe;
+
+  const { data } = useSession();
 
   const [imagePreview, setImagePreview] = useState(recipe?.recipeImage || "");
   const [imageFile, setImageFile] = useState(null);
@@ -52,7 +54,7 @@ const RecipeForm = ({ recipe }) => {
         imageUrl = imageData.data.display_url;
       }
 
-      // Add page হলে image required
+      // Add page if image required
       if (!imageUrl) {
         toast.error("Please select an image");
         return;
@@ -122,6 +124,11 @@ const RecipeForm = ({ recipe }) => {
 
         const data = await res.json();
 
+        if (!res.ok) {
+          toast.error(data.message);
+          return;
+        }
+
         if (data.insertedId) {
           toast.success("Recipe added successfully!");
 
@@ -152,6 +159,7 @@ const RecipeForm = ({ recipe }) => {
               required
               type="text"
               defaultValue={recipe?.recipeName}
+              placeholder="Rice"
               className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>
@@ -184,6 +192,7 @@ const RecipeForm = ({ recipe }) => {
               required
               type="text"
               defaultValue={recipe?.cuisineType}
+              placeholder="Bangladesh"
               className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>
@@ -215,6 +224,7 @@ const RecipeForm = ({ recipe }) => {
               required
               type="number"
               defaultValue={recipe?.preparationTime}
+              placeholder="30"
               className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>
@@ -250,6 +260,7 @@ const RecipeForm = ({ recipe }) => {
               required
               rows={3}
               defaultValue={recipe?.ingredients?.join(", ")}
+              placeholder="Chicken, Basmati Rice, Onion, Garlic, Ginger"
               className="w-full rounded-xl border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>
@@ -263,6 +274,7 @@ const RecipeForm = ({ recipe }) => {
               required
               rows={5}
               defaultValue={recipe?.instructions}
+              placeholder="Marinate chicken, cook rice separately, layer together and steam."
               className="w-full rounded-xl border px-4 py-2 outline-none focus:border-orange-500"
             />
           </div>

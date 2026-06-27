@@ -7,7 +7,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const MyRecipesPage = async () => {
-
   const session = await auth.api.getSession({
     headers: await headers(),
   });

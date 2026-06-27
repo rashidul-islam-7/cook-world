@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AiFillLike } from "react-icons/ai";
-import { FaEdit, FaTrash, FaHeart, FaPlusCircle } from "react-icons/fa";
+import { FaHeart, FaPlusCircle } from "react-icons/fa";
 import DeleteRecipe from "./DeleteRecipe";
 import EditRecipe from "./EditRecipe";
 

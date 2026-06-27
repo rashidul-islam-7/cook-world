@@ -1,32 +1,36 @@
 "use client";
 
 import { AiFillLike } from "react-icons/ai";
-import {
-  FaHeart,
-  FaStar,
-  FaShoppingCart,
-  FaFlag,
-} from "react-icons/fa";
+import { FaHeart, FaStar, FaShoppingCart, FaFlag } from "react-icons/fa";
+import LikeButton from "../BrowseRecipes/LikeButton";
+import { useEffect } from "react";
+import FavoriteButton from "../BrowseRecipes/FavoriteButton";
 
-const RecipeActions = () => {
+const RecipeActions = ({ recipe }) => {
   return (
     <div className="mt-6 space-y-3">
-      <button className="btn w-full bg-red-500 hover:bg-red-700 text-white">
-        <AiFillLike />
+      <LikeButton
+        recipe={recipe}
+        className={"btn w-full bg-red-500 hover:bg-red-700 text-white"}
+      >
+        {" "}
         Like Recipe
-      </button>
+      </LikeButton>
 
-      <button className="btn w-full bg-yellow-500 hover:bg-yellow-600 text-white ">
-        <FaStar className="mb-0.5" />
+      <FavoriteButton
+        recipe={recipe}
+        className={"btn w-full bg-yellow-500 hover:bg-yellow-600 text-white "}
+      >
+        {" "}
         Add Favorite
-      </button>
+      </FavoriteButton>
 
-      <button className="btn w-full bg-green-600 hover:bg-green-700 text-white">
+      <button className="btn w-full bg-green-600 rounded-full hover:bg-green-700 text-white">
         <FaShoppingCart />
         Purchase Recipe
       </button>
 
-      <button className="btn w-full btn-outline">
+      <button className="btn w-full btn-outline rounded-full">
         <FaFlag />
         Report Recipe
       </button>

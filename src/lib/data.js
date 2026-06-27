@@ -1,17 +1,20 @@
-
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export const getAllRecipes = async () => {
-  const res = await fetch(`${API_URL}/recipes`, {
-    cache: "no-store",
-  });
+  try {
+    const res = await fetch(`${API_URL}/recipes`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch recipes");
+    if (!res.ok) {
+      throw new Error("Failed to fetch recipes");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+    return [];
   }
-
-  return res.json();
 };
 
 export const getRecipeById = async (id) => {
@@ -26,12 +29,9 @@ export const getRecipeById = async (id) => {
   return res.json();
 };
 
-
 export const getMyRecipes = async (email) => {
   try {
-    const res = await fetch(
-      `${API_URL}/my-recipes?email=${email}`
-    );
+    const res = await fetch(`${API_URL}/my-recipes?email=${email}`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch recipes");
@@ -46,12 +46,9 @@ export const getMyRecipes = async (email) => {
 
 export const deleteMyRecipe = async (id) => {
   try {
-    const res = await fetch(
-      `${API_URL}/recipes/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const res = await fetch(`${API_URL}/recipes/${id}`, {
+      method: "DELETE",
+    });
 
     if (!res.ok) {
       throw new Error("Failed to delete recipe");
@@ -63,8 +60,6 @@ export const deleteMyRecipe = async (id) => {
     throw error;
   }
 };
-
-
 
 // export const updateRecipe = async (id, updateData) => {
 //   const res = await fetch(`${API_URL}/recipes/${id}`, {
@@ -82,6 +77,66 @@ export const deleteMyRecipe = async (id) => {
 //   return res.json();
 // };
 
+//like btn toggle
+export const toggleLike = async (recipeId, userEmail) => {
+  const res = await fetch(`${API_URL}/recipes/${recipeId}/like`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userEmail,
+    }),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+
+  return res.json();
+};
+
+// get like status  
+export const getLikeStatus = async (recipeId, userEmail) => {
+  const res = await fetch(
+    `${API_URL}/recipes/${recipeId}/like-status?userEmail=${userEmail}`
+  );
+
+  return res.json();
+};
+
+
+// Toggle Favorite
+export const toggleFavorite = async (recipeId, userEmail) => {
+  const res = await fetch(`${API_URL}/recipes/${recipeId}/favorite`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userEmail,
+    }),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+
+  return res.json();
+};
+
+// Get Favorite Status
+export const getFavoriteStatus = async (recipeId, userEmail) => {
+  const res = await fetch(
+    `${API_URL}/recipes/${recipeId}/favorite-status?userEmail=${userEmail}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+
+  return res.json();
+};
 
 // const recipes = [
 //   {

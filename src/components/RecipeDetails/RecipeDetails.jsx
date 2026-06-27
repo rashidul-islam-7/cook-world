@@ -17,7 +17,7 @@ const RecipeDetails = async ({ recipe }) => {
 
           <div>
             <RecipeInfo recipe={recipe} />
-            <RecipeActions />
+            <RecipeActions recipe={recipe} />
           </div>
         </div>
       </div>
