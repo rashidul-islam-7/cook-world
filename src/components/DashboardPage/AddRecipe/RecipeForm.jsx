@@ -1,6 +1,6 @@
 "use client";
-
-import { authClient, useSession } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
+import { addRecipe, updateRecipe } from "@/lib/data";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -8,8 +8,6 @@ import { toast } from "react-toastify";
 
 const RecipeForm = ({ recipe }) => {
   const isUpdate = !!recipe;
-
-  const { data } = useSession();
 
   const [imagePreview, setImagePreview] = useState(recipe?.recipeImage || "");
   const [imageFile, setImageFile] = useState(null);
@@ -32,12 +30,17 @@ const RecipeForm = ({ recipe }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!user) {
+      toast.error("Please login first");
+      return;
+    }
+
     try {
       setLoading(true);
 
       let imageUrl = recipe?.recipeImage || "";
 
-      // New image upload only if selected
+      // Upload new image if selected
       if (imageFile) {
         const imageFormData = new FormData();
         imageFormData.append("image", imageFile);
@@ -51,10 +54,15 @@ const RecipeForm = ({ recipe }) => {
         );
 
         const imageData = await imageRes.json();
+
+        if (!imageData.success) {
+          toast.error("Image upload failed");
+          return;
+        }
+
         imageUrl = imageData.data.display_url;
       }
 
-      // Add page if image required
       if (!imageUrl) {
         toast.error("Please select an image");
         return;
@@ -68,35 +76,27 @@ const RecipeForm = ({ recipe }) => {
 
         category: form.category.value,
         cuisineType: form.cuisineType.value,
-
         difficultyLevel: form.difficultyLevel.value,
 
         preparationTime: Number(form.preparationTime.value),
 
         ingredients: form.ingredients.value
           .split(",")
-          .map((item) => item.trim()),
+          .map((item) => item.trim())
+          .filter(Boolean),
 
         instructions: form.instructions.value,
 
-        authorId: user?.id,
-        authorName: user?.name,
-        authorEmail: user?.email,
+        authorId: user.id,
+        authorName: user.name,
+        authorEmail: user.email,
 
         updatedAt: new Date(),
       };
 
-      // UPDATE
+      // update recipe
       if (isUpdate) {
-        const res = await fetch(`http://localhost:8000/recipes/${recipe._id}`, {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(recipeData),
-        });
-
-        const data = await res.json();
+        const data = await updateRecipe(recipe._id, recipeData);
 
         if (data.modifiedCount > 0) {
           toast.success("Recipe updated successfully!");
@@ -104,42 +104,29 @@ const RecipeForm = ({ recipe }) => {
         }
       }
 
-      // ADD
+      // add recipe
       else {
         const newRecipe = {
           ...recipeData,
           likesCount: 0,
-          isFeatured: false,
+          favoriteCount: 0,
           status: "pending",
           createdAt: new Date(),
         };
 
-        const res = await fetch("http://localhost:8000/recipes", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newRecipe),
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-          toast.error(data.message);
-          return;
-        }
+        const data = await addRecipe(newRecipe);
 
         if (data.insertedId) {
           toast.success("Recipe added successfully!");
 
           form.reset();
-          setImagePreview("");
           setImageFile(null);
+          setImagePreview("");
         }
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(error.message || "Something went wrong");
     } finally {
       setLoading(false);
     }

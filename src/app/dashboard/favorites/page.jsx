@@ -2,49 +2,57 @@
 
 import Link from "next/link";
 import { FaHeart, FaEye, FaTrashAlt } from "react-icons/fa";
-
-const favoriteRecipes = [
-  {
-    _id: "1",
-    recipeName: "Chicken Biryani",
-    recipeImage:
-      "https://images.unsplash.com/photo-1701579231305-d84d8af9a3fd?q=80&w=1200",
-    authorName: "Rashid Islam",
-    addedAt: "20 Jun 2026",
-  },
-  {
-    _id: "2",
-    recipeName: "Creamy Pasta",
-    recipeImage:
-      "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1200",
-    authorName: "Sarah Wilson",
-    addedAt: "18 Jun 2026",
-  },
-  {
-    _id: "3",
-    recipeName: "Beef Burger",
-    recipeImage:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200",
-    authorName: "John Smith",
-    addedAt: "15 Jun 2026",
-  },
-];
+import { useEffect, useState } from "react";
+import { useSession } from "@/lib/auth-client";
+import { getMyFavorites, toggleFavorite } from "@/lib/data";
+import { toast } from "react-toastify";
+import Image from "next/image";
 
 const FavoritesPage = () => {
-  const handleRemove = (id) => {
-    console.log("Remove Favorite:", id);
+  const { data } = useSession();
+  const user = data?.user;
+
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const loadFavorites = async () => {
+      const data = await getMyFavorites(user.email);
+      setFavoriteRecipes(data);
+    };
+
+    loadFavorites();
+  }, [user]);
+
+  const handleRemove = async (recipeId) => {
+    try {
+      const res = await toggleFavorite(recipeId, user.email);
+
+      if (!res.isFavorite) {
+        setFavoriteRecipes((prev) =>
+          prev.filter((recipe) => recipe._id !== recipeId),
+        );
+
+        toast.success("Removed from favorites");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
   };
 
   return (
-    <section>
+    <section className="pt-20">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold">My Favorite Recipes</h1>
 
-        <p className="mt-2 text-gray-500">Recipes you've saved for later.</p>
+        <p className="mt-2 text-gray-500">
+          Explore and manage the recipes you've marked as favorites. .
+        </p>
       </div>
 
-      {/* Empty State */}
       {favoriteRecipes.length === 0 ? (
         <div className="flex min-h-[450px] flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300">
           <FaHeart className="text-6xl text-red-500" />
@@ -55,21 +63,21 @@ const FavoritesPage = () => {
 
           <Link
             href="/recipes"
-            className="mt-6 rounded-xl bg-orange-500 px-6 py-3 text-white transition hover:bg-orange-600"
+            className="mt-6 rounded-xl bg-orange-500 px-6 py-2 text-white hover:bg-orange-600"
           >
             Browse Recipes
           </Link>
         </div>
       ) : (
         <>
-          {/* Desktop Table */}
+          {/* Desktop */}
           <div className="hidden overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm md:block">
             <table className="table">
               <thead>
                 <tr>
                   <th>Recipe</th>
                   <th>Author</th>
-                  <th>Added Date</th>
+                  <th>Category</th>
                   <th className="text-center">Actions</th>
                 </tr>
               </thead>
@@ -79,9 +87,11 @@ const FavoritesPage = () => {
                   <tr key={recipe._id}>
                     <td>
                       <div className="flex items-center gap-4">
-                        <img
+                        <Image
                           src={recipe.recipeImage}
                           alt={recipe.recipeName}
+                          width={20}
+                          height={20}
                           className="h-14 w-14 rounded-xl object-cover"
                         />
 
@@ -91,13 +101,13 @@ const FavoritesPage = () => {
 
                     <td>{recipe.authorName}</td>
 
-                    <td>{recipe.addedAt}</td>
+                    <td>{recipe.category}</td>
 
                     <td>
                       <div className="flex justify-center gap-2">
                         <Link
                           href={`/recipes/${recipe._id}`}
-                          className="flex items-center gap-2 rounded-lg bg-orange-500 px-4 py-2 text-sm text-white transition hover:bg-orange-600"
+                          className="flex items-center gap-2 rounded-lg bg-orange-500 px-4 py-2 text-sm text-white hover:bg-orange-600"
                         >
                           <FaEye />
                           View
@@ -105,7 +115,7 @@ const FavoritesPage = () => {
 
                         <button
                           onClick={() => handleRemove(recipe._id)}
-                          className="flex cursor-pointer items-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm text-white transition hover:bg-red-600"
+                          className="flex items-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm text-white hover:bg-red-600"
                         >
                           <FaTrashAlt />
                           Remove
@@ -118,7 +128,7 @@ const FavoritesPage = () => {
             </table>
           </div>
 
-          {/* Mobile Cards */}
+          {/* Mobile */}
           <div className="grid gap-4 md:hidden">
             {favoriteRecipes.map((recipe) => (
               <div
@@ -126,9 +136,11 @@ const FavoritesPage = () => {
                 className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
               >
                 <div className="flex gap-4">
-                  <img
+                  <Image
                     src={recipe.recipeImage}
                     alt={recipe.recipeName}
+                    width={20}
+                    height={20}
                     className="h-20 w-20 rounded-xl object-cover"
                   />
 
@@ -140,7 +152,7 @@ const FavoritesPage = () => {
                     </p>
 
                     <p className="mt-1 text-xs text-gray-400">
-                      Added: {recipe.addedAt}
+                      {recipe.category}
                     </p>
                   </div>
                 </div>

@@ -138,6 +138,62 @@ export const getFavoriteStatus = async (recipeId, userEmail) => {
   return res.json();
 };
 
+
+// Add Recipe
+export const addRecipe = async (recipeData) => {
+  const res = await fetch(`${API_URL}/recipes`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(recipeData),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to add recipe");
+  }
+
+  return data;
+};
+
+// Update Recipe
+export const updateRecipe = async (recipeId, recipeData) => {
+  const res = await fetch(`${API_URL}/recipes/${recipeId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(recipeData),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to update recipe");
+  }
+
+  return data;
+};
+
+
+export const getMyFavorites = async (userEmail) => {
+  const res = await fetch(
+    `${API_URL}/my-favorites?userEmail=${userEmail}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch favorites");
+  }
+
+  return res.json();
+};
+
+
 // const recipes = [
 //   {
 //     _id: "1",

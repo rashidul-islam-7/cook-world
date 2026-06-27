@@ -1,7 +1,7 @@
 "use client";
 import { IoFastFoodSharp } from "react-icons/io5";
 
-const Loading = () => {
+const Loading = ({children}) => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-white">
       <div className="flex flex-col items-center">
@@ -20,7 +20,7 @@ const Loading = () => {
           Cook<span className="text-orange-500">World</span>
         </h2>
 
-        <p className=" text-gray-500">Loading Recipes...</p>
+        <p className=" text-gray-500">{children || "Loading Recipe...."}.</p>
 
         {/* Dots Loader */}
         <div className="mt-3 flex gap-2">
