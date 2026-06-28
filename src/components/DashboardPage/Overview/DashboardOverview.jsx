@@ -3,14 +3,26 @@
 import { FaBookOpen, FaHeart, FaThumbsUp, FaCrown } from "react-icons/fa";
 import OverviewStatsCard from "./OverviewStatsCard";
 
-export default function DashboardOverview() {
-  // Demo Data
-  const stats = {
-    totalRecipes: 12,
-    totalFavorites: 28,
-    totalLikes: 156,
-    isPremium: true,
-  };
+export default function DashboardOverview({
+  my_recipe_data = [],
+  user_isPremium,
+}) {
+  const stats = my_recipe_data.reduce(
+    (acc, recipe) => {
+      acc.totalRecipes += 1 || 0;
+      acc.totalLikes += recipe.likesCount || 0;
+      acc.totalFavorites += recipe.favoriteCount || 0;
+
+      return acc;
+    },
+    {
+      totalRecipes: 0,
+      totalLikes: 0,
+      totalFavorites: 0,
+    },
+  );
+
+  console.log(stats);
 
   return (
     <section>
@@ -39,10 +51,10 @@ export default function DashboardOverview() {
 
           <span
             className={`px-5 py-2 rounded-full font-semibold ${
-              stats.isPremium ? "bg-white text-orange-600" : "bg-black/20"
+              user_isPremium ? "bg-white text-orange-600" : "bg-black/20"
             }`}
           >
-            {stats.isPremium ? "Premium Active" : "Free User"}
+            {user_isPremium ? "Premium Active" : "Free User"}
           </span>
         </div>
       </div>
@@ -75,7 +87,7 @@ export default function DashboardOverview() {
 
         <OverviewStatsCard
           title="Membership"
-          value={stats.isPremium ? "Premium" : "Free"}
+          value={user_isPremium ? "Premium" : "Free"}
           icon={FaCrown}
           iconBg="bg-yellow-100"
           iconColor="text-yellow-500"

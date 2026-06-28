@@ -61,22 +61,6 @@ export const deleteMyRecipe = async (id) => {
   }
 };
 
-// export const updateRecipe = async (id, updateData) => {
-//   const res = await fetch(`${API_URL}/recipes/${id}`, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(updateData),
-//   });
-
-//   if (!res.ok) {
-//     throw new Error("Failed to update recipe");
-//   }
-
-//   return res.json();
-// };
-
 //like btn toggle
 export const toggleLike = async (recipeId, userEmail) => {
   const res = await fetch(`${API_URL}/recipes/${recipeId}/like`, {
