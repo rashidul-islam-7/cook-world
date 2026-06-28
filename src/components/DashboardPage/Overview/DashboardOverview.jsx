@@ -2,11 +2,24 @@
 
 import { FaBookOpen, FaHeart, FaThumbsUp, FaCrown } from "react-icons/fa";
 import OverviewStatsCard from "./OverviewStatsCard";
+import { useEffect, useState } from "react";
+import { getMyFavorites } from "@/lib/data";
 
-export default function DashboardOverview({
-  my_recipe_data = [],
-  user_isPremium,
-}) {
+export default function DashboardOverview({ my_recipe_data = [], user }) {
+  const [favorites, setFavorites] = useState([]);
+  const user_isPremium = user?.isPremium;
+
+  useEffect(() => {
+    if (!user?.email) return;
+
+    const favoriteList = async () => {
+      const data = await getMyFavorites(user.email);
+      setFavorites(data);
+    };
+
+    favoriteList();
+  }, [user?.email]);
+
   const stats = my_recipe_data.reduce(
     (acc, recipe) => {
       acc.totalRecipes += 1 || 0;
@@ -21,8 +34,6 @@ export default function DashboardOverview({
       totalFavorites: 0,
     },
   );
-
-  console.log(stats);
 
   return (
     <section>
@@ -71,7 +82,7 @@ export default function DashboardOverview({
 
         <OverviewStatsCard
           title="Total Favorites"
-          value={stats.totalFavorites}
+          value={favorites.length}
           icon={FaHeart}
           iconBg="bg-pink-100"
           iconColor="text-pink-500"

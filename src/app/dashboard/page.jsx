@@ -8,14 +8,13 @@ const DashboardPage = async () => {
     headers: await headers(),
   });
 
-  const userEmail = session?.user?.email;
-  const user_isPremium = session?.user?.isPremium;
+  const user = session?.user;
 
-  const my_recipe_data = await getMyRecipes(userEmail);
+  const my_recipe_data = await getMyRecipes(user?.email);
 
   return (
     <div className="pt-20">
-      <DashboardOverview my_recipe_data={my_recipe_data} user_isPremium={user_isPremium}  />
+      <DashboardOverview my_recipe_data={my_recipe_data} user={user}  />
     </div>
   );
 };

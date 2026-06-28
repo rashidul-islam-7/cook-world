@@ -65,7 +65,7 @@ const SidebarContent = ({ pathname, user }) => (
             </Avatar.Fallback>
           )}
         </Avatar>
-        {user && (
+        {user?.isPremium && (
           <span className="absolute top-0 -right-1 rounded-full text-yellow-400 text-sm font-semibold ">
             <FaChessQueen />
           </span>
