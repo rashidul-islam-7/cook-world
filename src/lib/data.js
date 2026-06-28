@@ -205,6 +205,28 @@ export const getSubscription = async (data) => {
   return resData;
 };
 
+export const savePurchasedRecipe = async (data) => {
+  const res = await fetch(`${API_URL}/purchase-recipe-payment`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const resData = await res.json();
+
+  return resData;
+};
+
+export const getPurchasedRecipes = async (userId) => {
+  const res = await fetch(`${API_URL}/purchased-recipes/${userId}`, {
+    cache: "no-store",
+  });
+
+  return res.json();
+};
+
 
 
 // const recipes = [

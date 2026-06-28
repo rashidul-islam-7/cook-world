@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 import { stripe } from "@/lib/stripe";
 import { FaCheckCircle } from "react-icons/fa";
-import { getSubscription } from "@/lib/data";
+import { savePurchasedRecipe } from "@/lib/data";
 
-export default async function Success({ searchParams }) {
+export default async function PaymentSuccess({ searchParams }) {
   const params = await searchParams;
   const sessionId = params?.session_id;
 
@@ -21,16 +21,26 @@ export default async function Success({ searchParams }) {
     const customerEmail = session?.customer_details?.email;
 
     if (status === "open") {
-      redirect("/dashboard");
+      redirect("/");
     }
-
+    console.log("Before savePurchasedRecipe");
     if (status === "complete") {
-      await getSubscription({ ...metadata, sessionId });
+      await savePurchasedRecipe({
+        sessionId,
+        userId: metadata?.userId,
+        recipeId: metadata?.recipeId,
+        recipeName: metadata?.recipeName,
+        authorName: metadata?.authorName,
+        recipeImage: metadata?.recipeImage,
+        price: metadata?.price,
+      });
+
+      console.log("After savePurchasedRecipe");
       return (
         <section className="min-h-screen flex items-center justify-center p-4 ">
           <div className=" text-center">
             {/* Success Icon */}
-            <div className="flex justify-center items-center text-5xl text-green-500">
+            <div className="flex justify-center items-center text-5xl text-green-500 mb-4">
               <FaCheckCircle />
             </div>
 
@@ -39,17 +49,17 @@ export default async function Success({ searchParams }) {
               Payment Success!
             </h2>
             <p className="text-gray-500 mb-6">
-              Thank you for purchasing premium. Your subscription is now active!
+              Thank you for purchasing <strong>{metadata?.recipeName}</strong>.
+              The recipe is now unlocked!
             </p>
-
+            
             {/* Navigation Buttons */}
             <div className="space-y-3">
-              <a
-                href="/dashboard"
-                className="cursor-pointer bg-gray-400 text-gray-700 rounded-xl font-semibold py-3 px-4 rtext-center"
-              >
-                Back to Dashboard
-              </a>
+              <div className="pt-2">
+                <a href="/" className="text-sm text-green-500 ">
+                  Back to Home
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -70,7 +80,7 @@ export default async function Success({ searchParams }) {
             We couldn't verify this payment session. Please check your stripe
             dashboard.
           </p>
-          <a href="/" className="text-orange-600 font-semibold hover:underline">
+          <a href="/" className="text-orange-600 font-semibold">
             Return Home
           </a>
         </div>

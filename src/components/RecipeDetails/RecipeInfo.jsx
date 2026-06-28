@@ -4,9 +4,7 @@ import { FaClock, FaUser } from "react-icons/fa";
 const RecipeInfo = ({ recipe }) => {
   return (
     <div className="rounded-2xl border border-gray-300 p-6">
-      <h1 className="text-3xl font-bold">
-        {recipe?.recipeName}
-      </h1>
+      <h1 className="text-3xl font-bold">{recipe?.recipeName}</h1>
 
       <div className="mt-4 flex items-center gap-2 text-gray-500">
         <FaUser />
@@ -32,18 +30,17 @@ const RecipeInfo = ({ recipe }) => {
         <div className="rounded-xl bg-base-200 p-4">
           <div className="flex items-center gap-2">
             <FaClock />
-            <h4 className="font-semibold">
-              {recipe?.preparationTime} min
-            </h4>
+            <h4 className="font-semibold">{recipe?.preparationTime} min</h4>
           </div>
         </div>
       </div>
 
-      <div className="mt-6 flex items-center gap-2 text-red-500">
-        <AiFillLike />
-        <span className="font-semibold">
-          {recipe?.likesCount} Likes
-        </span>
+      <div className="mt-6 flex items-center justify-between gap-2 text-red-500">
+        <div className="flex justify-center items-center gap-1">
+          <AiFillLike size={18} className="mb-0.5" />
+          <span className="font-semibold">{recipe?.likesCount} Likes</span>
+        </div>
+        <div>$-{recipe?.price || "5"}</div>
       </div>
     </div>
   );

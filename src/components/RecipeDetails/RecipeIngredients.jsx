@@ -1,6 +1,5 @@
 const RecipeIngredients = ({ recipe }) => {
 
-  console.log(recipe)
 
   return (
     <div className="rounded-2xl border border-gray-300 p-6">
