@@ -63,13 +63,15 @@ const PremiumGiftOffer = () => {
 
               {/* CTA */}
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/payment"
-                  className="flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition"
-                >
-                  <FaGift />
-                  Upgrade Now
-                </Link>
+                <form action="/api/subscription" method="POST">
+                  <button
+                    type="submit"
+                    className=" cursor-pointer flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition"
+                  >
+                    <FaGift />
+                    Upgrade Now
+                  </button>
+                </form>
 
                 <Link
                   href="/dashboard"

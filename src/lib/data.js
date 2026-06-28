@@ -194,6 +194,35 @@ export const getMyFavorites = async (userEmail) => {
 };
 
 
+
+export const getMyPurchases = async (userEmail) => {
+  const res = await fetch(
+    `${API_URL}/my-purchases?userEmail=${userEmail}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+
+  return res.json();
+};
+
+
+export const getSubscription = async (data) => {
+  const res = await fetch(`${API_URL}/subscription`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const resData = await res.json();
+  return resData;
+};
+
+
+
 // const recipes = [
 //   {
 //     _id: "1",

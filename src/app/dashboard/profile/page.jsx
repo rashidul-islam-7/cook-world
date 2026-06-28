@@ -123,11 +123,11 @@ const ProfilePage = () => {
               CookWorld.
             </p>
 
-            <Link href={"/payment"}>
-              <button className="mt-6 rounded-xl bg-white px-6 py-3 font-semibold text-orange-600 transition hover:bg-orange-100">
+           <form action={"/api/subscription"} method = "POST">
+              <button type="submit" className="cursor-pointer mt-6 rounded-xl bg-white px-6 py-3 font-semibold text-orange-600 transition hover:bg-orange-100">
                 Buy Premium
               </button>
-            </Link>
+           </form>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">

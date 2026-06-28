@@ -5,6 +5,7 @@ import { FaHeart, FaStar, FaShoppingCart, FaFlag } from "react-icons/fa";
 import LikeButton from "../BrowseRecipes/LikeButton";
 import { useEffect } from "react";
 import FavoriteButton from "../BrowseRecipes/FavoriteButton";
+import Link from "next/link";
 
 const RecipeActions = ({ recipe }) => {
   return (
@@ -24,11 +25,13 @@ const RecipeActions = ({ recipe }) => {
         {" "}
         Add Favorite
       </FavoriteButton>
-
-      <button className="btn w-full bg-green-600 rounded-full hover:bg-green-700 text-white">
-        <FaShoppingCart />
-        Purchase Recipe
-      </button>
+      
+      <Link href={`/payment/recipe/${recipe._id}`}>
+        <button className="btn w-full bg-green-600 rounded-full hover:bg-green-700 text-white">
+          <FaShoppingCart />
+          Purchase Recipe
+        </button>
+      </Link>
 
       <button className="btn w-full btn-outline rounded-full">
         <FaFlag />

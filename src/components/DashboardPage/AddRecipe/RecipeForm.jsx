@@ -110,6 +110,7 @@ const RecipeForm = ({ recipe }) => {
           ...recipeData,
           likesCount: 0,
           favoriteCount: 0,
+          price: 5,
           status: "pending",
           createdAt: new Date(),
         };
