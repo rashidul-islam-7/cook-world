@@ -61,8 +61,8 @@ export default function BrowseRecipesPage() {
   }, [recipes, selectedCategory, searchText]);
 
   return (
-    <section className="py-16 max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 pt-20 bg-gray-100/50
-dark:bg-gray-800">
+    <section className="py-16 mt-15 max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 pt-20 bg-gray-100/50
+dark:bg-gray-900">
       <div
         className=""
       >

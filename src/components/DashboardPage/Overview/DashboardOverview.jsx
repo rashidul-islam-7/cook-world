@@ -22,7 +22,7 @@ export default function DashboardOverview({ my_recipe_data = [], user }) {
 
   const stats = my_recipe_data.reduce(
     (acc, recipe) => {
-      acc.totalRecipes += 1 || 0;
+      acc.totalRecipes++;
       acc.totalLikes += recipe.likesCount || 0;
       acc.totalFavorites += recipe.favoriteCount || 0;
 
@@ -34,6 +34,33 @@ export default function DashboardOverview({ my_recipe_data = [], user }) {
       totalFavorites: 0,
     },
   );
+
+  const statsCardsInfo = [
+    {
+      title: "Total Recipes",
+      value: stats.totalRecipes,
+      icon: FaBookOpen,
+      iconBg: "bg-orange-100",
+    },
+    {
+      title: "Total Favorites",
+      value: favorites.length,
+      icon: FaHeart,
+      iconBg: "bg-pink-100",
+    },
+    {
+      title: "Total Likes",
+      value: stats.totalLikes,
+      icon: FaThumbsUp,
+      iconBg: "bg-blue-100",
+    },
+    {
+      title: "Membership",
+      value: user_isPremium ? "Premium" : "Free",
+      icon: FaCrown,
+      iconBg: "bg-yellow-100",
+    },
+  ];
 
   return (
     <section>
@@ -72,37 +99,15 @@ export default function DashboardOverview({ my_recipe_data = [], user }) {
 
       {/* Stats Cards */}
       <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-        <OverviewStatsCard
-          title="Total Recipes"
-          value={stats.totalRecipes}
-          icon={FaBookOpen}
-          iconBg="bg-orange-100"
-          iconColor="text-orange-500"
-        />
-
-        <OverviewStatsCard
-          title="Total Favorites"
-          value={favorites.length}
-          icon={FaHeart}
-          iconBg="bg-pink-100"
-          iconColor="text-pink-500"
-        />
-
-        <OverviewStatsCard
-          title="Total Likes"
-          value={stats.totalLikes}
-          icon={FaThumbsUp}
-          iconBg="bg-blue-100"
-          iconColor="text-blue-500"
-        />
-
-        <OverviewStatsCard
-          title="Membership"
-          value={user_isPremium ? "Premium" : "Free"}
-          icon={FaCrown}
-          iconBg="bg-yellow-100"
-          iconColor="text-yellow-500"
-        />
+        {statsCardsInfo.map((card) => (
+          <OverviewStatsCard
+            key={card.title}
+            title={card.title}
+            value={card.value}
+            icon={card.icon}
+            iconBg={card.iconBg}
+          />
+        ))}
       </div>
 
       {/* Optional Activity Section */}

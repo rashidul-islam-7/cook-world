@@ -43,7 +43,7 @@ const FavoritesPage = () => {
   };
 
   return (
-    <section className="pt-20">
+    <section >
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold">My Favorite Recipes</h1>
@@ -71,7 +71,7 @@ const FavoritesPage = () => {
       ) : (
         <>
           {/* Desktop */}
-          <div className="hidden overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm md:block">
+          <div className="hidden overflow-x-auto rounded-2xl border border-gray-200 dark:bg-gray-800  bg-white shadow-sm md:block">
             <table className="table">
               <thead>
                 <tr>

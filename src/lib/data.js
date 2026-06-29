@@ -28,7 +28,6 @@ export const getAllRecipes = async () => {
 //   return res.json();
 // };
 
-
 export const getRecipeById = async (id) => {
   const res = await fetch(`${API_URL}/recipes/${id}`, {
     cache: "no-store",
@@ -92,15 +91,14 @@ export const toggleLike = async (recipeId, userEmail) => {
   return res.json();
 };
 
-// get like status  
+// get like status
 export const getLikeStatus = async (recipeId, userEmail) => {
   const res = await fetch(
-    `${API_URL}/recipes/${recipeId}/like-status?userEmail=${userEmail}`
+    `${API_URL}/recipes/${recipeId}/like-status?userEmail=${userEmail}`,
   );
 
   return res.json();
 };
-
 
 // Toggle Favorite
 export const toggleFavorite = async (recipeId, userEmail) => {
@@ -124,7 +122,7 @@ export const toggleFavorite = async (recipeId, userEmail) => {
 // Get Favorite Status
 export const getFavoriteStatus = async (recipeId, userEmail) => {
   const res = await fetch(
-    `${API_URL}/recipes/${recipeId}/favorite-status?userEmail=${userEmail}`
+    `${API_URL}/recipes/${recipeId}/favorite-status?userEmail=${userEmail}`,
   );
 
   if (!res.ok) {
@@ -133,7 +131,6 @@ export const getFavoriteStatus = async (recipeId, userEmail) => {
 
   return res.json();
 };
-
 
 // Add Recipe
 export const addRecipe = async (recipeData) => {
@@ -173,14 +170,10 @@ export const updateRecipe = async (recipeId, recipeData) => {
   return data;
 };
 
-
 export const getMyFavorites = async (userEmail) => {
-  const res = await fetch(
-    `${API_URL}/my-favorites?userEmail=${userEmail}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`${API_URL}/my-favorites?userEmail=${userEmail}`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch favorites");
@@ -189,12 +182,8 @@ export const getMyFavorites = async (userEmail) => {
   return res.json();
 };
 
-
-
 export const getMyPurchases = async (userEmail) => {
-  const res = await fetch(
-    `${API_URL}/my-purchases?userEmail=${userEmail}`
-  );
+  const res = await fetch(`${API_URL}/my-purchases?userEmail=${userEmail}`);
 
   if (!res.ok) {
     throw new Error("Failed");
@@ -202,7 +191,6 @@ export const getMyPurchases = async (userEmail) => {
 
   return res.json();
 };
-
 
 export const getSubscription = async (data) => {
   const res = await fetch(`${API_URL}/subscription`, {
@@ -239,8 +227,21 @@ export const getPurchasedRecipes = async (userId) => {
   return res.json();
 };
 
+// admin api calls
+export const getDashboardOverview = async () => {
+  console.log("api called")
+  const res = await fetch(`${API_URL}/admin/dashboard`, {
+    cache: "no-store",
+  });
 
+  console.log(res.status);
 
+  const data = await res.json();
+
+  console.log(data);
+
+  return data;
+};
 // const recipes = [
 //   {
 //     _id: "1",

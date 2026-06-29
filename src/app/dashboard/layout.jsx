@@ -5,7 +5,9 @@ export default function DashboardLayout({ children }) {
     <div className="lg:flex">
       <Sidebar />
 
-      <main className="lg:flex-1 p-5 md:p-8">{children}</main>
+      <main className="lg:flex-1 px-5 md:px-8 mt-18 py-10 md:py-20 dark:bg-gray-800">
+        {children}
+      </main>
     </div>
   );
 }

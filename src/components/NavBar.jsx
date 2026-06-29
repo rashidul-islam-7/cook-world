@@ -14,6 +14,8 @@ const NavBar = () => {
   const { data, isPending } = useSession();
   const user = data?.user;
 
+  const userRole = user?.role;
+
   const navLinks = [
     {
       name: "Home",
@@ -33,8 +35,10 @@ const NavBar = () => {
 
   return (
     <div className="relative">
-      <div className="navbar bg-gray-100
-dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0 w-full z-50 ">
+      <div
+        className="navbar bg-gray-100
+dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0 w-full z-50 "
+      >
         {/* Left */}
         <div className="navbar-start">
           {/* Mobile Menu */}
@@ -65,27 +69,20 @@ dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0
                   <>
                     <li>
                       <Link
-                        href="/dashboard"
+                        href={
+                          userRole === "admin"
+                            ? "/dashboard/admin"
+                            : "/dashboard"
+                        }
                         className={
-                          pathname === "/dashboard" ? activeClass : normalClass
+                          pathname.startsWith("/dashboard")
+                            ? activeClass
+                            : normalClass
                         }
                       >
                         Dashboard
                       </Link>
                     </li>
-
-                    {/* <li>
-                      <Link
-                        href="/dashboard/profile"
-                        className={
-                          pathname === "/dashboard/profile"
-                            ? activeClass
-                            : normalClass
-                        }
-                      >
-                        Profile
-                      </Link>
-                    </li> */}
                   </>
                 )}
               </ul>
@@ -119,9 +116,13 @@ dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0
               <>
                 <li>
                   <Link
-                    href="/dashboard"
+                    href={
+                      userRole === "admin" ? "/dashboard/admin" : "/dashboard"
+                    }
                     className={
-                      pathname === "/dashboard" ? activeClass : normalClass
+                      pathname.startsWith("/dashboard")
+                        ? activeClass
+                        : normalClass
                     }
                   >
                     Dashboard

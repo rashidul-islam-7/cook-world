@@ -10,14 +10,19 @@ import {
   FaUser,
   FaChessQueen,
   FaCartPlus,
+    FaUsers,
+  FaUtensils,
+  FaFlag,
+  FaMoneyCheckAlt,
 } from "react-icons/fa";
+
 
 import { Avatar, Button, Drawer } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { PanelLeftClose } from "lucide-react";
 import Logout from "../Logout";
 
-const menuItems = [
+const userMenuItems = [
   {
     name: "Overview",
     href: "/dashboard",
@@ -51,9 +56,39 @@ const menuItems = [
   },
 ];
 
+const adminMenuItem = [
+  {
+    name: "Overview",
+    href: "/dashboard/admin",
+    icon: FaHome,
+  },
+  {
+    name: "Manage Users",
+    href: "/dashboard/admin/users",
+    icon: FaUsers,
+  },
+  {
+    name: "Manage Recipes",
+    href: "/dashboard/admin/recipes",
+    icon: FaUtensils,
+  },
+  {
+    name: "Recipe Reports",
+    href: "/dashboard/admin/reports",
+    icon: FaFlag,
+  },
+  {
+    name: "Transactions",
+    href: "/dashboard/admin/transactions",
+    icon: FaMoneyCheckAlt,
+  },
+];
+
 const SidebarContent = ({ pathname, user }) => (
-  <div className="h-full flex flex-col pt-20 bg-gray-200/50
-dark:bg-gray-900">
+  <div
+    className="h-full flex flex-col pt-20 bg-gray-200/50
+dark:bg-gray-900"
+  >
     {/* user imag & name */}
     <div className="border-b  px-6 py-3 flex items-center gap-2">
       <div className="relative">
@@ -78,24 +113,55 @@ dark:bg-gray-900">
 
     {/* Menu */}
     <ul className="flex-1 p-4 space-y-2">
-      {menuItems.map((item) => {
-        const Icon = item.icon;
+      {user?.role === "admin" ? (
+        <>
+          {adminMenuItem.map((item) => {
+            const Icon = item.icon;
 
-        return (
-          <li key={item.href}>
-            <Link
-              href={item.href}
-              className={`flex items-center gap-2 rounded-sm px-4 py-1.5 transition-all duration-300
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`flex items-center gap-2 rounded-sm px-4 py-1.5 transition-all duration-300
               ${
-                pathname === item.href ? "bg-orange-100 dark:bg-gray-400/50" : "bg-orange-100 dark:hover:bg-gray-400/50"
+                pathname === item.href
+                  ? " dark:bg-gray-400/50 bg-gray-300"
+                  : " dark:hover:bg-gray-400/50 hover:bg-gray-300"
               }`}
-            >
-              <Icon size={18} />
-              <span>{item.name}</span>
-            </Link>
-          </li>
-        );
-      })}
+                >
+                  <Icon size={18} />
+                  <span>{item.name}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </>
+      ) : (
+        <>
+          {" "}
+          {userMenuItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`flex items-center gap-2 rounded-sm px-4 py-1.5 transition-all duration-300
+              ${
+                pathname === item.href
+                  ? " dark:bg-gray-400/50 bg-gray-300"
+                  : " dark:hover:bg-gray-400/50 hover:bg-gray-300"
+              }`}
+                >
+                  <Icon size={18} />
+                  <span>{item.name}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </>
+      )}
+
       <Logout />
     </ul>
   </div>
