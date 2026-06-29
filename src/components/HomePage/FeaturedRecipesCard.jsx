@@ -11,7 +11,7 @@ const FeaturedRecipesCard = ({ featuredRecipesData = [], topRecipes = [] }) => {
     featuredRecipesData.length > 0 ? featuredRecipesData : topRecipes;
 
   return (
-    <div className="flex justify-center gap-10 items-center ">
+    <div className="flex flex-wrap justify-center gap-10 items-center ">
       {recipes.map((recipe, index) => (
         <motion.div
           key={recipe._id}

@@ -1,5 +1,9 @@
+
+export const metadata = {
+  title: "My Recipe | CookWorld",
+};
+
 import MyRecipesTable from "@/components/DashboardPage/MyRecipes/MyRecipesTable";
-// import { authClient } from "@/lib/auth-client";
 import { auth } from "@/lib/auth";
 import { getMyRecipes } from "@/lib/data";
 import { headers } from "next/headers";

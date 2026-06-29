@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Purchased Recipes | CookWorld",
+};
+
+
 import { auth } from "@/lib/auth";
 import { getPurchasedRecipes } from "@/lib/data";
 import { headers } from "next/headers";

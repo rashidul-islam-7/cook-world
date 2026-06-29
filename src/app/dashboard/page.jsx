@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Dashboard Overview | CookWorld",
+};
+
 import DashboardOverview from "@/components/DashboardPage/Overview/DashboardOverview";
 import { getMyRecipes } from "@/lib/data";
 import { auth } from "@/lib/auth";

@@ -1,5 +1,5 @@
-import RecipeRow from "./RecipeRow";
 import Image from "next/image";
+import RecipeRow from "./RecipeRow";
 import EditRecipeButton from "./EditButton";
 import DeleteRecipeButton from "./DeleteButton";
 import FeatureRecipeButton from "./FeatureButton";
@@ -16,8 +16,8 @@ const RecipesTable = ({ recipes }) => {
   return (
     <>
       {/* ================= Desktop Table ================= */}
-      <div className="hidden overflow-x-auto rounded-xl border bg-white dark:bg-gray-900 md:block">
-        <table className="table">
+      <div className="hidden w-full overflow-x-auto rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900 md:block">
+        <table className="table w-full">
           <thead className="bg-gray-100 dark:bg-gray-800">
             <tr>
               <th>#</th>
@@ -31,56 +31,62 @@ const RecipesTable = ({ recipes }) => {
 
           <tbody>
             {recipes.map((recipe, index) => (
-              <RecipeRow
-                key={recipe._id}
-                recipe={recipe}
-                index={index}
-              />
+              <RecipeRow key={recipe._id} recipe={recipe} index={index} />
             ))}
           </tbody>
         </table>
       </div>
 
       {/* ================= Mobile Cards ================= */}
-      <div className="space-y-4 md:hidden">
+      <div className="grid grid-cols-1 gap-4 md:hidden">
         {recipes.map((recipe, index) => (
           <div
             key={recipe._id}
-            className="rounded-2xl border bg-white p-4 shadow-sm dark:bg-gray-900"
+            className="rounded-2xl border bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900"
           >
-            <div className="flex gap-4">
+            {/* Top Section */}
+            <div className="flex items-start gap-3">
               <Image
                 src={recipe.recipeImage}
                 alt={recipe.recipeName}
                 width={80}
                 height={80}
-                className="h-20 w-20 rounded-xl object-cover"
+                className="h-20 w-20 flex-shrink-0 rounded-xl object-cover"
               />
 
-              <div className="flex-1">
-                <h3 className="font-bold">{recipe.recipeName}</h3>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="truncate text-base font-bold">
+                    {recipe.recipeName}
+                  </h3>
 
-                <p className="text-sm text-gray-500">
+                  <span className="text-xs text-gray-400">#{index + 1}</span>
+                </div>
+
+                <p className="mt-1 text-sm text-gray-500">
                   {recipe.cuisineType}
                 </p>
 
-                <p className="mt-2 text-sm">
-                  <span className="font-medium">Author:</span>{" "}
-                  {recipe.authorName}
-                </p>
+                <div className="mt-3 space-y-1 text-sm">
+                  <p>
+                    <span className="font-medium">Author:</span>{" "}
+                    <span className="break-words">{recipe.authorName}</span>
+                  </p>
 
-                <p className="text-sm">
-                  <span className="font-medium">Category:</span>{" "}
-                  {recipe.category}
-                </p>
+                  <p>
+                    <span className="font-medium">Category:</span>{" "}
+                    {recipe.category}
+                  </p>
 
-                <p className="text-sm font-semibold text-green-600">
-                  ${recipe.price}
-                </p>
+                  <p className="font-semibold text-green-600">
+                    ${recipe.price}
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-2">
+            {/* Action Buttons */}
+            <div className="mt-5 flex flex-wrap justify-center gap-2 border-t pt-4">
               <EditRecipeButton recipe={recipe} />
 
               <DeleteRecipeButton recipeId={recipe._id} />

@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Add Recipe | CookWorld",
+};
+
 import RecipeForm from "@/components/DashboardPage/AddRecipe/RecipeForm";
 
 export default function AddRecipePage() {

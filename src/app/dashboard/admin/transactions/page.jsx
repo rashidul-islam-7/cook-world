@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Transactions | CookWorld",
+};
+
+
 import React from 'react';
 
 const AdminTransactionsPage = () => {

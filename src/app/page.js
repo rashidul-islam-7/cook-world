@@ -1,4 +1,6 @@
-
+export const metadata = {
+  title: "Home | CookWorld",
+};
 import React from 'react';
 import HomeHero from "@/components/HomePage/HomeHero";
 import FeaturedRecipes from '@/components/HomePage/FeaturedRecipes';

@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# CookWorld - Recipe Sharing Platform
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+CookWorld is a full-stack recipe sharing platform where users can create, share, discover, purchase, and manage recipes. Users can save favorites, like recipes, purchase premium membership, and enjoy a secure and responsive experience.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🚀 Live Links
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Live Site:** 
+* **Client Repo:** 
+* **Server Repo:** 
 
-## Learn More
+## 👨‍💼 Admin Login
 
-To learn more about Next.js, take a look at the following resources:
+* **Email:** 
+* **Password:** 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ✨ Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* User Authentication (Email/Google)
+* JWT Authentication
+* Add, Update & Delete Recipes
+* Recipe Purchase with Stripe
+* Premium Membership
+* Like & Favorite Recipes
+* Recipe Report System
+* User & Admin Dashboard
+* Recipe Filtering & Pagination
+* Dark/Light Theme
+* Fully Responsive UI
 
-## Deploy on Vercel
+## 🛠️ Technologies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Frontend:** Next.js, React, Tailwind CSS, DaisyUI, Framer Motion
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Backend:** Node.js, Express.js, MongoDB, JWT, Better Auth
+
+**Others:** Stripe, ImgBB, React Toastify
+
+
+---
+
+**Developed by Rashidul Islam**

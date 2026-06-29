@@ -1,3 +1,6 @@
+export const metadata = {
+  title: "Manage Recipe | CookWorld",
+};
 
 import RecipesTable from "@/components/AdminDashboard/ManageRecipes/RecipesTable";
 import { getAllRecipesForAdmin } from "@/lib/data";

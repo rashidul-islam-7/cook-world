@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Manage Users | CookWorld",
+};
+
 
 import UsersTable from "@/components/AdminDashboard/ManageUsers/UsersTable";
 import { getAllUsers } from "@/lib/data";

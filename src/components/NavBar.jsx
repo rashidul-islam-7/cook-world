@@ -158,9 +158,7 @@ dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0
             <div className="flex items-center gap-3">
               <Link
                 href="/signin"
-                className={`font-medium ${
-                  pathname === "/signin" ? "text-orange-400" : "text-white"
-                }`}
+                className={`font-medium`}
               >
                 Login
               </Link>
