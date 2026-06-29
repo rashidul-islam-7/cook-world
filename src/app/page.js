@@ -11,7 +11,7 @@ import BrowseRecipesPage from './recipes/page';
 const HomePage = () => {
   return (
     <div>
-     <section>
+     <section className='pt-10'>
       <HomeHero />
      </section>
      <section>

@@ -6,7 +6,8 @@ import { FaCrown, FaUsers, FaGift, FaCheckCircle } from "react-icons/fa";
 
 const PremiumGiftOffer = () => {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-24 bg-gray-100/50
+dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16">
         {/* MAIN CARD */}
         <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl ">

@@ -52,9 +52,10 @@ const menuItems = [
 ];
 
 const SidebarContent = ({ pathname, user }) => (
-  <div className="h-full flex flex-col pt-20">
+  <div className="h-full flex flex-col pt-20 bg-gray-200/50
+dark:bg-gray-900">
     {/* user imag & name */}
-    <div className="border-b border-b-gray-200 px-6 py-3 flex items-center gap-2">
+    <div className="border-b  px-6 py-3 flex items-center gap-2">
       <div className="relative">
         <Avatar>
           {user?.image ? (
@@ -86,7 +87,7 @@ const SidebarContent = ({ pathname, user }) => (
               href={item.href}
               className={`flex items-center gap-2 rounded-sm px-4 py-1.5 transition-all duration-300
               ${
-                pathname === item.href ? "bg-orange-200" : "hover:bg-orange-100"
+                pathname === item.href ? "bg-orange-100 dark:bg-gray-400/50" : "bg-orange-100 dark:hover:bg-gray-400/50"
               }`}
             >
               <Icon size={18} />
@@ -108,12 +109,12 @@ const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block w-72 min-h-screen bg-gray-100/50">
+      <aside className="hidden lg:block w-72 min-h-screen ">
         <SidebarContent pathname={pathname} user={user} />
       </aside>
 
       {/* Mobile Drawer */}
-      <div className="lg:hidden bg-gray-100/50 relative">
+      <div className="lg:hidden  relative">
         <Drawer>
           <Button isIconOnly variant="light" className="p-2">
             <PanelLeftClose />

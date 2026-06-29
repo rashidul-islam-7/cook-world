@@ -4,9 +4,10 @@ import Link from "next/link";
 
 const JoinCommunity = () => {
   return (
-    <section className=" pb-20 bg-gray-50/50 dark:bg-gray-950/20">
-      <div className="">
-        <div className="relative overflow-hidden shadow-2xl shadow-orange-500/10 group">
+    <section
+    >
+      <div>
+        <div className="pb-10 relative overflow-hidden shadow-2xl shadow-orange-500/10 group">
           {/* Background Image with Zoom Effect on Hover */}
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"

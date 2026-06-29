@@ -15,7 +15,7 @@ const FilterRecipe = ({
             ${
               selectedCategory === category
                 ? "bg-orange-500 text-white"
-                : "bg-gray-100 hover:bg-orange-100"
+                : "bg-gray-100 text-black hover:bg-orange-100"
             }`}
         >
           {category}

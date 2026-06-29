@@ -17,6 +17,18 @@ export const getAllRecipes = async () => {
   }
 };
 
+// export const getAllRecipes = async (page = 1) => {
+//   const res = await fetch(
+//     `${API_URL}/recipes?page=${page}&limit=9`,
+//     {
+//       cache: "no-store",
+//     }
+//   );
+
+//   return res.json();
+// };
+
+
 export const getRecipeById = async (id) => {
   const res = await fetch(`${API_URL}/recipes/${id}`, {
     cache: "no-store",

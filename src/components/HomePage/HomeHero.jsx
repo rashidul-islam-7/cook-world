@@ -17,7 +17,8 @@ const HeroSection = () => {
   return (
     <section className="relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-yellow-50 to-white dark:from-zinc-900 dark:via-zinc-950 dark:to-black" />
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-yellow-50 to-white dark:from-gray-800 dark:via-gray-950 
+      dark:to-black" />
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

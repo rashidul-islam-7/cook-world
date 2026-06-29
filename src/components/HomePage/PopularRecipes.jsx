@@ -49,7 +49,7 @@ const popularRecipes = [
 
 const PopularRecipes = () => {
   return (
-    <section className="pt-20 bg-linear-to-b from-yellow-50/50 to-white">
+    <section className="pt-20 bg-linear-to-b from-yellow-50/50 to-white dark:from-gray-900 dark:to-gray-700">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">

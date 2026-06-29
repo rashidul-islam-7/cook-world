@@ -6,6 +6,7 @@ import { RiMenu2Fill } from "react-icons/ri";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "@/lib/auth-client";
 import { Avatar } from "@heroui/react";
+import ThemeButton from "./ThemeButton";
 
 const NavBar = () => {
   const pathname = usePathname();
@@ -32,7 +33,8 @@ const NavBar = () => {
 
   return (
     <div className="relative">
-      <div className="navbar bg-base-100 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0 w-full z-50 ">
+      <div className="navbar bg-gray-100
+dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0 w-full z-50 ">
         {/* Left */}
         <div className="navbar-start">
           {/* Mobile Menu */}
@@ -72,7 +74,7 @@ const NavBar = () => {
                       </Link>
                     </li>
 
-                    <li>
+                    {/* <li>
                       <Link
                         href="/dashboard/profile"
                         className={
@@ -83,7 +85,7 @@ const NavBar = () => {
                       >
                         Profile
                       </Link>
-                    </li>
+                    </li> */}
                   </>
                 )}
               </ul>
@@ -126,7 +128,7 @@ const NavBar = () => {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link
                     href="/dashboard/profile"
                     className={
@@ -137,7 +139,7 @@ const NavBar = () => {
                   >
                     Profile
                   </Link>
-                </li>
+                </li> */}
               </>
             )}
           </ul>
@@ -185,6 +187,8 @@ const NavBar = () => {
             </div>
           )}
         </div>
+
+        <ThemeButton />
       </div>
     </div>
   );

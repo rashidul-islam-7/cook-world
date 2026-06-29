@@ -9,7 +9,8 @@ import FavoriteButton from "./FavoriteButton";
 
 const RecipeCard = ({ recipe }) => {
   return (
-    <div className="group overflow-hidden rounded-2xl bg-white shadow ">
+    <div className="group overflow-hidden rounded-2xl bg-white dark:border
+dark:bg-gray-800 shadow ">
       <div className="relative overflow-hidden">
         <Image
           src={recipe.recipeImage}

@@ -49,7 +49,7 @@ const LikeButton = ({ recipe, children, className = "" }) => {
   return (
     <button
       onClick={handleLike}
-      className={`flex items-center gap-2 shadow rounded-full px-3 py-0.5  cursor-pointer ${className} `}
+      className={`flex items-center gap-2 shadow rounded-full px-3 dark:px-0 py-0.5  cursor-pointer ${className} `}
     >
       <span className="">
         {" "}

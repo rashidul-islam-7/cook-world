@@ -61,8 +61,11 @@ export default function BrowseRecipesPage() {
   }, [recipes, selectedCategory, searchText]);
 
   return (
-    <section className="py-16 mt-20">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16">
+    <section className="py-16 max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 pt-20 bg-gray-100/50
+dark:bg-gray-800">
+      <div
+        className=""
+      >
         {/* Header */}
         <div className="text-center mb-12">
           <span className="inline-block rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-600">
@@ -141,6 +144,36 @@ export default function BrowseRecipesPage() {
             </button>
           </div>
         )}
+
+        {/* <div className="flex justify-center gap-2 mt-10">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage(page - 1)}
+            className="btn"
+          >
+            Previous
+          </button>
+
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setPage(index + 1)}
+              className={`btn ${
+                page === index + 1 ? "btn-primary" : "btn-outline"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            disabled={page === totalPages}
+            onClick={() => setPage(page + 1)}
+            className="btn"
+          >
+            Next
+          </button>
+        </div> */}
       </div>
     </section>
   );
