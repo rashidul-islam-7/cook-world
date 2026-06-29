@@ -64,12 +64,12 @@ const adminMenuItem = [
   },
   {
     name: "Manage Users",
-    href: "/dashboard/admin/users",
+    href: "/dashboard/admin/manage-users",
     icon: FaUsers,
   },
   {
     name: "Manage Recipes",
-    href: "/dashboard/admin/recipes",
+    href: "/dashboard/admin/manage-recipes",
     icon: FaUtensils,
   },
   {

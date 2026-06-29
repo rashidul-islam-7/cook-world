@@ -17,17 +17,6 @@ export const getAllRecipes = async () => {
   }
 };
 
-// export const getAllRecipes = async (page = 1) => {
-//   const res = await fetch(
-//     `${API_URL}/recipes?page=${page}&limit=9`,
-//     {
-//       cache: "no-store",
-//     }
-//   );
-
-//   return res.json();
-// };
-
 export const getRecipeById = async (id) => {
   const res = await fetch(`${API_URL}/recipes/${id}`, {
     cache: "no-store",
@@ -227,6 +216,8 @@ export const getPurchasedRecipes = async (userId) => {
   return res.json();
 };
 
+
+
 // admin api calls
 export const getDashboardOverview = async () => {
   console.log("api called")
@@ -242,6 +233,17 @@ export const getDashboardOverview = async () => {
 
   return data;
 };
+
+// get all users 
+export const getAllUsers = async () => {
+  const res = await fetch(`${API_URL}/admin/users`, {
+    cache: "no-store",
+  });
+
+  return res.json();
+};
+
+
 // const recipes = [
 //   {
 //     _id: "1",

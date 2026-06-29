@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdminRecipePage = () => {
+const AdminRecipeManagePage = () => {
     return (
         <div>AdminRecipePage
             
@@ -8,4 +8,4 @@ const AdminRecipePage = () => {
     );
 };
 
-export default AdminRecipePage;
+export default AdminRecipeManagePage;
