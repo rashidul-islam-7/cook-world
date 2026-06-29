@@ -259,6 +259,34 @@ export const unblockUser = async (id) => {
   return res.json();
 };
 
+export const getAllRecipesForAdmin = async () => {
+  const res = await fetch(`${API_URL}/admin/recipes`, {
+    cache: "no-store",
+  });
+
+  return res.json();
+};
+
+// delete recipe form all recipe 
+export const deleteRecipe = async (id) => {
+  const res = await fetch(`${API_URL}/admin/recipes/${id}`, {
+    method: "DELETE",
+  });
+
+  return res.json();
+};
+
+
+// feature recipe add and delete toggle 
+export const featureRecipe = async (id) => {
+  const res = await fetch(`${API_URL}/recipes/${id}/feature`, {
+    method: "PATCH",
+  });
+
+  return res.json();
+};
+
+
 
 // const recipes = [
 //   {
