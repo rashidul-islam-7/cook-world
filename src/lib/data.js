@@ -243,6 +243,22 @@ export const getAllUsers = async () => {
   return res.json();
 };
 
+export const blockUser = async (id) => {
+  const res = await fetch(`${API_URL}/admin/users/block/${id}`, {
+    method: "PATCH",
+  });
+
+  return res.json();
+};
+
+export const unblockUser = async (id) => {
+  const res = await fetch(`${API_URL}/admin/users/unblock/${id}`, {
+    method: "PATCH",
+  });
+
+  return res.json();
+};
+
 
 // const recipes = [
 //   {
