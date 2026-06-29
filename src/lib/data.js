@@ -278,7 +278,7 @@ export const deleteRecipe = async (id) => {
 
 
 // feature recipe add and delete toggle 
-export const featureRecipe = async (id) => {
+export const featureRecipeAddDelete = async (id) => {
   const res = await fetch(`${API_URL}/recipes/${id}/feature`, {
     method: "PATCH",
   });
@@ -286,6 +286,14 @@ export const featureRecipe = async (id) => {
   return res.json();
 };
 
+
+export const getFeatureRecipes = async () => {
+  const res = await fetch(`${API_URL}/featured-recipes`, {
+    cache: "no-store",
+  });
+
+  return res.json();
+};
 
 
 // const recipes = [

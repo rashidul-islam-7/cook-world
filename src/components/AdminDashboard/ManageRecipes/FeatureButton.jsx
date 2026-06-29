@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { featureRecipe } from "@/lib/data";
 import { toast } from "react-toastify";
 import { FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { featureRecipeAddDelete } from "@/lib/data";
 
 export default function FeatureRecipeButton({ recipeId, initialFeatured }) {
   const router = useRouter();
@@ -12,7 +12,7 @@ export default function FeatureRecipeButton({ recipeId, initialFeatured }) {
   const [isFeatured, setIsFeatured] = useState(initialFeatured);
 
   const handleFeature = async () => {
-    const result = await featureRecipe(recipeId);
+    const result = await featureRecipeAddDelete(recipeId);
 
     if (result.success) {
       setIsFeatured(result.featured);
