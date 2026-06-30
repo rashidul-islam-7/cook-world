@@ -1,5 +1,7 @@
+"use client";
+
 import { authClient } from "@/lib/auth-client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
@@ -8,23 +10,65 @@ const GoogleSignUpButton = () => {
 
   const handleGoogleSignUp = async () => {
     setGoogleLoading(true);
+
     await authClient.signIn.social({
       provider: "google",
       callbackURL: "/",
     });
+
+    setGoogleLoading(false);
   };
 
   return (
-    <button onClick={handleGoogleSignUp} className="mt-8 flex items-center justify-center gap-3 w-full px-4 py-2.5 bg-white border border-gray-300 rounded-xl font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 cursor-pointer">
+    <button
+      type="button"
+      onClick={handleGoogleSignUp}
+      disabled={googleLoading}
+      className="
+        mt-6
+        flex
+        w-full
+        items-center
+        justify-center
+        gap-3
+        rounded-xl
+        border
+        border-gray-300
+        bg-white
+        px-4
+        py-2
+        font-medium
+        text-gray-700
+        shadow-sm
+        transition-all
+        duration-300
+        hover:-translate-y-0.5
+        cursor-pointer
+        hover:border-gray-400
+        hover:bg-gray-100
+        hover:shadow-md
+        focus:outline-none
+        focus:ring-2
+        focus:ring-blue-500
+        disabled:cursor-not-allowed
+        disabled:opacity-70
+
+        dark:border-gray-700
+        dark:bg-gray-900
+        dark:text-gray-200
+        dark:hover:border-gray-600
+        dark:hover:bg-gray-800
+      "
+    >
       <FcGoogle className="text-2xl" />
 
       {googleLoading ? (
         <>
-          <span>Creating account...</span>
-          <AiOutlineLoading3Quarters className="animate-spin" />
+          <span>Signing in...</span>
+          <AiOutlineLoading3Quarters className="animate-spin text-lg" />
         </>
       ) : (
-        "Continue with Google"
+        <span>Continue with Google</span>
       )}
     </button>
   );
