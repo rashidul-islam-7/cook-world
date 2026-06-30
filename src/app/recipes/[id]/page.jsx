@@ -1,12 +1,25 @@
+
 import RecipeDetails from "@/components/RecipeDetails/RecipeDetails";
-import { getAllRecipes } from "@/lib/data";
 
+import { getRecipeDataById } from "@/lib/utils";
 
+// Dynamic Metadata
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  const recipe = await getRecipeDataById(id);
+
+  return {
+    title: `${recipe.recipeName} | Cook World`,
+    description: recipe.instructions?.slice(0, 150),
+  };
+}
+
+// Page Component
 const RecipeDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const recipesData = await getAllRecipes();
 
-  const recipe = recipesData.find((item) => item._id === id);
+  const recipe = await getRecipeDataById(id);
 
   return (
     <div>
