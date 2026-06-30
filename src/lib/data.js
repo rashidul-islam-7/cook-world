@@ -289,7 +289,7 @@ export const featureRecipeAddDelete = async (id) => {
 
 export const getFeatureRecipes = async () => {
   const res = await fetch(`${API_URL}/featured-recipes`, {
-    cache: "no-store",
+    next: { revalidate: 60 }
   });
 
   return res.json();

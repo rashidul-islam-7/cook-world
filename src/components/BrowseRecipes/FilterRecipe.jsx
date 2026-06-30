@@ -11,7 +11,7 @@ const FilterRecipe = ({
         <button
           key={category}
           onClick={() => setSelectedCategory(category)}
-          className={`rounded-full px-5 py-2 text-sm font-medium transition-all cursor-pointer
+          className={`rounded-full px-5 py-1.5 text-sm shadow font-medium transition-all cursor-pointer
             ${
               selectedCategory === category
                 ? "bg-orange-500 text-white"

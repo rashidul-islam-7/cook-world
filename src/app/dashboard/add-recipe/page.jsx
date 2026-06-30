@@ -6,7 +6,7 @@ import RecipeForm from "@/components/DashboardPage/AddRecipe/RecipeForm";
 
 export default function AddRecipePage() {
   return (
-    <section className="max-w-7xl mx-auto">
+    <section className="max-w-7xl mx-auto -mt-20">
       <div className="mb-8">
         <h1 className="text-2xl md:text-3xl font-bold">Add New Recipe</h1>
 

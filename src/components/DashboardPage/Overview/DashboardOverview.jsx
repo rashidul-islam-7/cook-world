@@ -111,14 +111,14 @@ export default function DashboardOverview({ my_recipe_data = [], user }) {
       </div>
 
       {/* Optional Activity Section */}
-      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4">
+      <div className="mt-8 rounded-2xl border border-gray-200 bg-white dark:bg-gray-500/30 shadow p-4">
         <h2 className="text-xl font-bold">Account Summary</h2>
 
         <p className="mt-1 text-gray-500">
           You have created{" "}
-          <span className="font-semibold text-black">{stats.totalRecipes}</span>{" "}
+          <span className="font-semibold text-black dark:text-white ">{stats.totalRecipes}</span>{" "}
           recipes and received{" "}
-          <span className="font-semibold text-black">{stats.totalLikes}</span>{" "}
+          <span className="font-semibold text-black dark:text-white ">{stats.totalLikes}</span>{" "}
           likes from the community.
         </p>
       </div>

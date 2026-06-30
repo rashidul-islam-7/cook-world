@@ -17,8 +17,8 @@ const DashboardPage = async () => {
   const my_recipe_data = await getMyRecipes(user?.email);
 
   return (
-    <div >
-      <DashboardOverview my_recipe_data={my_recipe_data} user={user}  />
+    <div>
+      <DashboardOverview my_recipe_data={my_recipe_data} user={user} />
     </div>
   );
 };

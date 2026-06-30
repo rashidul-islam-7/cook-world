@@ -14,18 +14,18 @@ const FeaturedRecipes = async () => {
 
   return (
     <section
-      className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 py-20 bg-gray-100/50
+      className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-16 py-15 md:py-20 bg-gray-100/50
 dark:bg-gray-900"
     >
       <div className="">
         {/* Heading */}
-        <div className="text-center mb-14 ">
+        <div className="text-center mb-10 md:mb-14 ">
           <span className="inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-600">
             <FaStar />
             Featured Recipes
           </span>
 
-          <h2 className="mt-5 text-4xl font-bold">
+          <h2 className="mt-3 text-4xl font-bold">
             Hand Picked Recipes For You
           </h2>
 

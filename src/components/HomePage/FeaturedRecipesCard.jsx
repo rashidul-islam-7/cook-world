@@ -11,7 +11,7 @@ const FeaturedRecipesCard = ({ featuredRecipesData = [], topRecipes = [] }) => {
     featuredRecipesData.length > 0 ? featuredRecipesData : topRecipes;
 
   return (
-    <div className="flex flex-wrap justify-center gap-10 items-center ">
+    <div className="flex flex-wrap justify-center gap-3 items-center ">
       {recipes.map((recipe, index) => (
         <motion.div
           key={recipe._id}
@@ -41,7 +41,7 @@ const FeaturedRecipesCard = ({ featuredRecipesData = [], topRecipes = [] }) => {
 
           {/* Content */}
           <div className="p-4">
-            <h3 className="text-2xl font-bold">{recipe.recipeName}</h3>
+            <h3 className="text-lg font-bold">{recipe.recipeName}</h3>
 
             <div className="mt-2 flex flex-wrap gap-3 text-sm text-default-500">
               <div className="flex items-center gap-1">

@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { AiFillLike } from "react-icons/ai";
-import { FaHeart } from "react-icons/fa";
 import LikeButton from "./LikeButton";
 import FavoriteButton from "./FavoriteButton";
 

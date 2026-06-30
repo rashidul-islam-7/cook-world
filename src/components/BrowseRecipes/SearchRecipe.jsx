@@ -5,7 +5,7 @@ const SearchRecipe = ({ setSearchText, searchText }) => {
   return (
     <div>
       {/* Search */}
-      <div className="relative max-w-xl mx-auto mb-8">
+      <div className="relative max-w-xl mx-auto mt-5 md:mb-8">
         <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
 
         <input

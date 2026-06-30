@@ -24,7 +24,7 @@ const MyRecipesPage = async () => {
   const myRecipeData = await getMyRecipes(email);
 
   return (
-    <section className="pt-20">
+    <section className="">
       <MyRecipesTable recipes={myRecipeData} />
     </section>
   );

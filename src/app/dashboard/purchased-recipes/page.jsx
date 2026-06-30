@@ -11,6 +11,7 @@ import Link from "next/link";
 import { FaShoppingBag } from "react-icons/fa";
 
 const PurchasedRecipesPage = async () => {
+
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -28,7 +29,7 @@ const PurchasedRecipesPage = async () => {
   const purchasedRecipes = await getPurchasedRecipes(user.id);
 
   return (
-    <section className="pt-20">
+    <section className="">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold">My Purchased Recipes</h1>

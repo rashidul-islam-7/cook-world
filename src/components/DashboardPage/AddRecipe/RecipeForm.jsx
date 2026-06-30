@@ -136,7 +136,7 @@ const RecipeForm = ({ recipe }) => {
   return (
     <form onSubmit={handleSubmit} className="grid gap-8 lg:grid-cols-3">
       {/* FORM */}
-      <div className="lg:col-span-2 rounded-2xl border border-gray-200 bg-white p-4 md:p-6 shadow-sm">
+      <div className="lg:col-span-2 rounded-2xl border border-gray-200 p-4 md:p-6 shadow-sm">
         <div className="grid gap-5 md:grid-cols-2">
           {/* Recipe Name */}
           <div className="md:col-span-2">
@@ -160,7 +160,7 @@ const RecipeForm = ({ recipe }) => {
               name="category"
               required
               defaultValue={recipe?.category}
-              className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
+              className="w-full rounded border px-4 py-2 outline-none dark:bg-gray-800 focus:border-orange-500"
             >
               <option value="">Select Category</option>
               <option>Rice</option>
@@ -168,6 +168,14 @@ const RecipeForm = ({ recipe }) => {
               <option>Dessert</option>
               <option>Pizza</option>
               <option>Seafood</option>
+              <option>Pasta</option>
+              <option>Soup</option>
+              <option>Salad</option>
+              <option>Chicken</option>
+              <option>Beef</option>
+              <option>Mutton</option>
+              <option>Vegetarian</option>
+              <option>Breakfast</option>
             </select>
           </div>
 
@@ -193,7 +201,7 @@ const RecipeForm = ({ recipe }) => {
               name="difficultyLevel"
               required
               defaultValue={recipe?.difficultyLevel}
-              className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500"
+              className="w-full rounded border px-4 py-2 outline-none focus:border-orange-500 dark:bg-gray-800"
             >
               <option>Easy</option>
               <option>Medium</option>

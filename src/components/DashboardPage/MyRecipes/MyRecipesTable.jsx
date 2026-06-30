@@ -37,11 +37,11 @@ const MyRecipesTable = ({ recipes = [] }) => {
           <p className="mt-2 text-gray-500">Create your first recipe.</p>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <div className="overflow-hidden rounded-2xl border border-gray-200  shadow-sm">
           {/* Desktop Table */}
           <div className="hidden overflow-x-auto md:block">
             <table className="table">
-              <thead>
+              <thead className="bg-gray-400 text-white">
                 <tr>
                   <th>Recipe</th>
                   <th>Category</th>
@@ -53,7 +53,7 @@ const MyRecipesTable = ({ recipes = [] }) => {
 
               <tbody>
                 {recipes.map((recipe) => (
-                  <tr key={recipe._id}>
+                  <tr className="" key={recipe._id}>
                     <td>
                       <div className="flex items-center gap-4">
                         <Image
@@ -73,8 +73,8 @@ const MyRecipesTable = ({ recipes = [] }) => {
                     <td>{recipe.category}</td>
 
                     <td>
-                      <div className="flex items-center gap-2 text-red-500">
-                        <FaHeart />
+                      <div className="flex items-center gap-2 text-blue-500">
+                        <AiFillLike />
                         {recipe.likesCount}
                       </div>
                     </td>

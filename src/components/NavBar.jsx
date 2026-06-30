@@ -156,10 +156,7 @@ dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0
             </Link>
           ) : (
             <div className="flex items-center gap-3">
-              <Link
-                href="/signin"
-                className={`font-medium`}
-              >
+              <Link href="/signin" className={`font-medium hidden md:block`}>
                 Login
               </Link>
 

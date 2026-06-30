@@ -36,7 +36,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <section className="space-y-8 pt-20">
+    <section className="space-y-8 ">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">My Profile</h1>
@@ -48,7 +48,7 @@ const ProfilePage = () => {
       {/* Top Section */}
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Profile Card */}
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-gray-200  p-6 shadow-sm">
           <div className="flex flex-col items-center text-center">
             <div className="relative">
               <img
@@ -83,7 +83,7 @@ const ProfilePage = () => {
         </div>
 
         {/* Update Form */}
-        <div className="lg:col-span-2 rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="lg:col-span-2 rounded-3xl border border-gray-200  p-6 shadow-sm">
           <h3 className="mb-6 text-xl font-bold">Update Profile</h3>
 
           <form onSubmit={handleSubmit} className="space-y-5">

@@ -5,8 +5,10 @@ import { useSession } from "@/lib/auth-client";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { toggleLike, getLikeStatus } from "@/lib/data";
+import { useRouter } from "next/navigation";
 
 const LikeButton = ({ recipe, children, className = "" }) => {
+  const route = useRouter();
   const { data } = useSession();
   const user = data?.user;
 
@@ -24,25 +26,74 @@ const LikeButton = ({ recipe, children, className = "" }) => {
     loadLike();
   }, [user, recipe._id]);
 
+  // const handleLike = async () => {
+  //   if (!user) {
+  //     toast.error("Please login first");
+  //     route.push("/signup");
+  //     return;
+  //   }
+
+  //   try {
+  //     const res = await toggleLike(recipe._id, user.email);
+
+  //     if (res.liked) {
+  //       setLiked(true);
+  //       setCount((prev) => prev + 1);
+  //     } else {
+  //       setLiked(false);
+  //       setCount((prev) => prev - 1);
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     toast.error("Something went wrong");
+  //   }
+  // };
+
+  // const handleLike = async () => {
+  //   if (!user) {
+  //     toast.error("Please login first");
+  //     route.push("/signup");
+  //     return;
+  //   }
+
+  //   const previousLiked = liked;
+
+  //   // optimistic update
+  //   setLiked(!liked);
+  //   setCount((prev) => (liked ? prev - 1 : prev + 1));
+
+  //   try {
+  //     await toggleLike(recipe._id, user.email);
+  //   } catch (err) {
+  //     // rollback
+  //     setLiked(previousLiked);
+  //     setCount((prev) => (previousLiked ? prev + 1 : prev - 1));
+
+  //     toast.error("Something went wrong");
+  //   }
+  // };
+
   const handleLike = async () => {
     if (!user) {
       toast.error("Please login first");
+      route.push("/signup");
       return;
     }
+    const previousLiked = liked;
+    const previousCount = count;
+
+    setLiked(!previousLiked);
+    setCount((prev) => (previousLiked ? prev - 1 : prev + 1));
 
     try {
       const res = await toggleLike(recipe._id, user.email);
-
-      if (res.liked) {
-        setLiked(true);
-        setCount((prev) => prev + 1);
-      } else {
-        setLiked(false);
-        setCount((prev) => prev - 1);
-      }
+      setLiked(res.liked);
     } catch (err) {
       console.log(err);
       toast.error("Something went wrong");
+
+      setLiked(previousLiked);
+      setCount(previousCount);
     }
   };
 

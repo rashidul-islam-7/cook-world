@@ -10,12 +10,11 @@ import {
   FaUser,
   FaChessQueen,
   FaCartPlus,
-    FaUsers,
+  FaUsers,
   FaUtensils,
   FaFlag,
   FaMoneyCheckAlt,
 } from "react-icons/fa";
-
 
 import { Avatar, Button, Drawer } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
@@ -86,11 +85,11 @@ const adminMenuItem = [
 
 const SidebarContent = ({ pathname, user }) => (
   <div
-    className="h-full flex flex-col pt-20 bg-gray-200/50
+    className="h-full flex flex-col md:pt-20 pt-0 md:bg-gray-200/50
 dark:bg-gray-900"
   >
-    {/* user imag & name */}
-    <div className="border-b  px-6 py-3 flex items-center gap-2">
+    {/* user image & name */}
+    <div className=" hidden border-b px-6 py-3 md:flex items-center gap-2">
       <div className="relative">
         <Avatar>
           {user?.image ? (
@@ -108,7 +107,10 @@ dark:bg-gray-900"
         )}
       </div>
 
-      <p>{user?.name}</p>
+      <div>
+        <p>{user?.name}</p>
+        <p className="text-sm text-gray-400 line-clamp-1">{user?.email}</p>
+      </div>
     </div>
 
     {/* Menu */}
@@ -180,10 +182,13 @@ const Sidebar = () => {
       </aside>
 
       {/* Mobile Drawer */}
-      <div className="lg:hidden  relative">
+      <div className="absolute inline md:hidden right-0">
         <Drawer>
           <Button isIconOnly variant="light" className="p-2">
-            <PanelLeftClose />
+            <span>
+              {" "}
+              <PanelLeftClose />
+            </span>
           </Button>
 
           <Drawer.Backdrop>
