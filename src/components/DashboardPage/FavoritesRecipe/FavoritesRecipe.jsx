@@ -8,7 +8,7 @@ import { getMyFavorites, toggleFavorite } from "@/lib/data";
 import { toast } from "react-toastify";
 import Image from "next/image";
 
-const FavoritesRecipe = () => {
+const FavoritesRecipe = ({ token }) => {
   const { data } = useSession();
   const user = data?.user;
 
@@ -20,7 +20,7 @@ const FavoritesRecipe = () => {
     const loadFavorites = async () => {
 
 
-      const data = await getMyFavorites(user.email);
+      const data = await getMyFavorites(user.email, token);
       setFavoriteRecipes(data);
     };
 
@@ -29,7 +29,7 @@ const FavoritesRecipe = () => {
 
   const handleRemove = async (recipeId) => {
     try {
-      const res = await toggleFavorite(recipeId, user.email);
+      const res = await toggleFavorite(recipeId, user.email, token);
 
       if (!res.isFavorite) {
         setFavoriteRecipes((prev) =>

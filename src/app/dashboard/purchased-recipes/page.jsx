@@ -14,6 +14,10 @@ const PurchasedRecipesPage = async () => {
     headers: await headers(),
   });
 
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
+
   const user = session?.user;
 
   if (!user) {
@@ -24,7 +28,7 @@ const PurchasedRecipesPage = async () => {
     );
   }
 
-  const purchasedRecipes = await getPurchasedRecipes(user.id);
+  const purchasedRecipes = await getPurchasedRecipes(user.id, token);
 
   return (
     <section className="">

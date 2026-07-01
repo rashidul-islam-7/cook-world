@@ -1,9 +1,11 @@
+
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import React from "react";
 import { FaEdit } from "react-icons/fa";
 
-const EditRecipe = ({ recipeId }) => {
+const EditRecipe = async ({ recipeId }) => {
+
   return (
     <div>
       <Link href={`/edit-recipe/${recipeId}`}>

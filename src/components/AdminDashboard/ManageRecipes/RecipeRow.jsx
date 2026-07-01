@@ -2,8 +2,16 @@ import Image from "next/image";
 import EditRecipeButton from "./EditButton";
 import DeleteRecipeButton from "./DeleteButton";
 import FeatureRecipeButton from "./FeatureButton";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-const RecipeRow = ({ recipe, index }) => {
+const RecipeRow = async({ recipe, index }) => {
+
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+
   return (
     <tr className="transition hover:bg-gray-50 dark:hover:bg-gray-800">
       {/* Serial */}
@@ -54,11 +62,12 @@ const RecipeRow = ({ recipe, index }) => {
         <div className="flex flex-wrap items-center justify-center gap-2">
           <EditRecipeButton recipe={recipe} />
 
-          <DeleteRecipeButton recipeId={recipe._id} />
+          <DeleteRecipeButton recipeId={recipe._id} token={token} />
 
           <FeatureRecipeButton
             recipeId={recipe._id}
             featured={recipe.featured}
+            token={token}
           />
         </div>
       </td>

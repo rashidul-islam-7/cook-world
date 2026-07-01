@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { deleteMyRecipe } from "@/lib/data";
 import { AlertDialog, Button } from "@heroui/react";
 import { Trash2 } from "lucide-react";
@@ -10,8 +11,7 @@ const DeleteRecipe = ({ recipeId }) => {
 
   const handleDelete = async (id) => {
     const { data: tokenData } = await authClient.token();
-    const token = tokenData?.token;
-    await deleteMyRecipe(id, token);
+    await deleteMyRecipe(id, tokenData?.token);
     // Refresh page data
     router.refresh();
   };

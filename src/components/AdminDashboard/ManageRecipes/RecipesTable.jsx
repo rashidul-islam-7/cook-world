@@ -4,7 +4,7 @@ import EditRecipeButton from "./EditButton";
 import DeleteRecipeButton from "./DeleteButton";
 import FeatureRecipeButton from "./FeatureButton";
 
-const RecipesTable = ({ recipes }) => {
+const RecipesTable = async ({ recipes }) => {
   if (!recipes?.length) {
     return (
       <div className="rounded-xl border border-dashed py-20 text-center text-gray-500">

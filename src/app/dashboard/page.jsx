@@ -12,14 +12,17 @@ const DashboardPage = async () => {
     headers: await headers(),
   });
 
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  })
+
   const user = session?.user;
 
-  const my_recipe_data = await getMyRecipes(user?.email);
-  console.log("my_recipe_data", my_recipe_data);
+  const my_recipe_data = await getMyRecipes(user?.email, token);
 
   return (
     <div>
-      <DashboardOverview my_recipe_data={my_recipe_data} user={user} />
+      <DashboardOverview my_recipe_data={my_recipe_data} user={user} token={token} />
     </div>
   );
 };

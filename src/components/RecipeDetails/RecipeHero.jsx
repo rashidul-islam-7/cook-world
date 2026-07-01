@@ -3,7 +3,7 @@ import Image from "next/image";
 const RecipeHero = ({ recipe }) => {
   return (
     <div className="overflow-hidden ">
-      <Image
+      <img
         src={recipe?.recipeImage}
         alt={recipe?.recipeName}
         height={400}

@@ -7,6 +7,8 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const RecipeForm = ({ recipe }) => {
+  const { data: tokenData } = authClient.token();
+  const token = tokenData?.token;
   const isUpdate = !!recipe;
 
   const [imagePreview, setImagePreview] = useState(recipe?.recipeImage || "");
@@ -89,14 +91,12 @@ const RecipeForm = ({ recipe }) => {
         authorId: user.id,
         authorName: user.name,
         authorEmail: user.email,
-
         updatedAt: new Date(),
       };
 
-
       // update recipe
       if (isUpdate) {
-        const data = await updateRecipe(recipe._id, recipeData);
+        const data = await updateRecipe(recipe._id, recipeData, token);
 
         if (data.modifiedCount > 0) {
           toast.success("Recipe updated successfully!");
@@ -110,12 +110,12 @@ const RecipeForm = ({ recipe }) => {
           ...recipeData,
           likesCount: 0,
           favoriteCount: 0,
-          price: 5,
+          price: Math.floor(Math.random() * 10) + 5, // Random price between 5 and 15
           status: "pending",
           createdAt: new Date(),
         };
 
-        const data = await addRecipe(newRecipe);
+        const data = await addRecipe(newRecipe, token);
 
         if (data.insertedId) {
           toast.success("Recipe added successfully!");

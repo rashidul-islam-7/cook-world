@@ -7,7 +7,7 @@ import { FaHeart, FaPlusCircle } from "react-icons/fa";
 import DeleteRecipe from "./DeleteRecipe";
 import EditRecipe from "./EditRecipe";
 
-const MyRecipesTable = ({ recipes = [] }) => {
+const MyRecipesTable = ({ recipes = [], token }) => {
   return (
     <>
       {/* Header */}
@@ -94,7 +94,7 @@ const MyRecipesTable = ({ recipes = [] }) => {
                     <td>
                       <div className="flex justify-center gap-2">
                         <EditRecipe recipeId={recipe._id} />
-                        <DeleteRecipe recipeId={recipe._id} />
+                        <DeleteRecipe recipeId={recipe._id}  />
                       </div>
                     </td>
                   </tr>

@@ -633,15 +633,17 @@ export const getRecipeById = async (id) => {
   return res.json();
 };
 
-export const getMyRecipes = async (email) => {
-  console.log("getMyRecipes called with email:", email);
+export const getMyRecipes = async (email, token) => {
   try {
-    const res = await fetch(`${API_URL}/my-recipes?email=${email}`);
- 
-    // if (!res.ok) {
-    //   throw new Error("Failed to fetch recipes");
-    // }
- console.log("Response status:", res.status);
+    const res = await fetch(`${API_URL}/my-recipes?email=${email}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch recipes");
+    }
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -673,8 +675,11 @@ export const getFavoriteStatus = async (recipeId, userEmail) => {
   return res.json();
 };
 
-export const getMyFavorites = async (userEmail) => {
+export const getMyFavorites = async (userEmail, token) => {
   const res = await fetch(`${API_URL}/my-favorites?userEmail=${userEmail}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
     cache: "no-store",
   });
 
@@ -685,7 +690,7 @@ export const getMyFavorites = async (userEmail) => {
   return res.json();
 };
 
-export const getMyPurchases = async (userEmail) => {
+export const getMyPurchases = async (userEmail, token) => {
   const res = await fetch(`${API_URL}/my-purchases?userEmail=${userEmail}`);
 
   if (!res.ok) {
@@ -695,9 +700,12 @@ export const getMyPurchases = async (userEmail) => {
   return res.json();
 };
 
-export const getPurchasedRecipes = async (userId) => {
+export const getPurchasedRecipes = async (userId, token) => {
   const res = await fetch(`${API_URL}/purchased-recipes/${userId}`, {
     cache: "no-store",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {
@@ -707,9 +715,12 @@ export const getPurchasedRecipes = async (userId) => {
   return res.json();
 };
 
-export const getFeatureRecipes = async () => {
+export const getFeatureRecipes = async (token) => {
   const res = await fetch(`${API_URL}/featured-recipes`, {
     next: { revalidate: 60 },
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {
@@ -719,9 +730,6 @@ export const getFeatureRecipes = async () => {
   return res.json();
 };
 
-
-
-
 // ---------------- Recipe actions ----------------
 
 // NOTE: token is required — pass it from your auth context / session
@@ -729,7 +737,7 @@ export const deleteMyRecipe = async (id, token) => {
   try {
     const res = await fetch(`${API_URL}/recipes/${id}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
       method: "DELETE",
     });
@@ -765,11 +773,12 @@ export const toggleLike = async (recipeId, userEmail) => {
 };
 
 // Toggle Favorite
-export const toggleFavorite = async (recipeId, userEmail) => {
+export const toggleFavorite = async (recipeId, userEmail, token) => {
   const res = await fetch(`${API_URL}/recipes/${recipeId}/favorite`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       userEmail,
@@ -784,11 +793,12 @@ export const toggleFavorite = async (recipeId, userEmail) => {
 };
 
 // Add Recipe
-export const addRecipe = async (recipeData) => {
+export const addRecipe = async (recipeData, token) => {
   const res = await fetch(`${API_URL}/post-recipes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(recipeData),
   });
@@ -802,12 +812,13 @@ export const addRecipe = async (recipeData) => {
   return data;
 };
 
-// Update Recipe
-export const updateRecipe = async (recipeId, recipeData) => {
+// Update/edit Recipe
+export const updateRecipe = async (recipeId, recipeData, token) => {
   const res = await fetch(`${API_URL}/recipes/${recipeId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(recipeData),
   });
@@ -855,13 +866,8 @@ export const savePurchasedRecipe = async (data) => {
   return res.json();
 };
 
-
-
-
 // ---------------- Admin API calls ----------------
-// NOTE: these routes are typically protected on the backend.
-// If your server requires an admin token, pass it in and add:
-// headers: { Authorization: `Bearer ${token}` }
+
 
 export const getDashboardOverview = async () => {
   const res = await fetch(`${API_URL}/admin/dashboard`, {
@@ -938,9 +944,12 @@ export const deleteRecipe = async (id) => {
 };
 
 // feature recipe add and delete toggle
-export const featureRecipeAddDelete = async (id) => {
+export const featureRecipeAddDelete = async (id, token) => {
   const res = await fetch(`${API_URL}/recipes/${id}/feature`, {
     method: "PATCH",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {

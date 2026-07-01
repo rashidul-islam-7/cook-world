@@ -5,52 +5,56 @@ import OverviewStatsCard from "./OverviewStatsCard";
 import { useEffect, useState } from "react";
 import { getMyFavorites } from "@/lib/data";
 
-export default function DashboardOverview({ my_recipe_data = [], user }) {
+export default function DashboardOverview({
+  my_recipe_data = [],
+  user,
+  token,
+}) {
   const [favorites, setFavorites] = useState([]);
   const user_isPremium = user?.isPremium;
 
-  // useEffect(() => {
-  //   if (!user?.email) return;
+  useEffect(() => {
+    if (!user?.email) return;
 
-  //   const favoriteList = async () => {
-  //     const data = await getMyFavorites(user.email);
-  //     setFavorites(data);
-  //   };
+    const favoriteList = async () => {
+      const data = await getMyFavorites(user.email, token);
+      setFavorites(data);
+    };
 
-  //   favoriteList();
-  // }, [user?.email]);
+    favoriteList();
+  }, [user?.email]);
 
-  // const stats = my_recipe_data.reduce(
-  //   (acc, recipe) => {
-  //     acc.totalRecipes++;
-  //     acc.totalLikes += recipe.likesCount || 0;
-  //     acc.totalFavorites += recipe.favoriteCount || 0;
+  const stats = my_recipe_data.reduce(
+    (acc, recipe) => {
+      acc.totalRecipes++;
+      acc.totalLikes += recipe.likesCount || 0;
+      acc.totalFavorites += recipe.favoriteCount || 0;
 
-  //     return acc;
-  //   },
-  //   {
-  //     totalRecipes: 0,
-  //     totalLikes: 0,
-  //     totalFavorites: 0,
-  //   },
-  // );
+      return acc;
+    },
+    {
+      totalRecipes: 0,
+      totalLikes: 0,
+      totalFavorites: 0,
+    },
+  );
 
   const statsCardsInfo = [
     {
       title: "Total Recipes",
-      // value: stats.totalRecipes,
+      value: stats.totalRecipes,
       icon: FaBookOpen,
       iconBg: "bg-orange-100",
     },
     {
       title: "Total Favorites",
-      // value: favorites.length,
+      value: favorites.length,
       icon: FaHeart,
       iconBg: "bg-pink-100",
     },
     {
       title: "Total Likes",
-      // value: stats.totalLikes,
+      value: stats.totalLikes,
       icon: FaThumbsUp,
       iconBg: "bg-blue-100",
     },
@@ -114,13 +118,17 @@ export default function DashboardOverview({ my_recipe_data = [], user }) {
       <div className="mt-8 rounded-2xl border border-gray-200 bg-white dark:bg-gray-500/30 shadow p-4">
         <h2 className="text-xl font-bold">Account Summary</h2>
 
-        {/* <p className="mt-1 text-gray-500">
+        <p className="mt-1 text-gray-500">
           You have created{" "}
-          <span className="font-semibold text-black dark:text-white ">{stats.totalRecipes}</span>{" "}
+          <span className="font-semibold text-black dark:text-white ">
+            {stats.totalRecipes}
+          </span>{" "}
           recipes and received{" "}
-          <span className="font-semibold text-black dark:text-white ">{stats.totalLikes}</span>{" "}
+          <span className="font-semibold text-black dark:text-white ">
+            {stats.totalLikes}
+          </span>{" "}
           likes from the community.
-        </p> */}
+        </p>
       </div>
     </section>
   );

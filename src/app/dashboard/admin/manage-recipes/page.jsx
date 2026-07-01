@@ -7,6 +7,8 @@ import { getAllRecipesForAdmin } from "@/lib/data";
 import { FaUtensils } from "react-icons/fa";
 
 const ManageRecipesPage = async () => {
+
+
   const recipes = await getAllRecipesForAdmin();
 
   return (

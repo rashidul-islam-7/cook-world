@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { toggleFavorite, getFavoriteStatus } from "@/lib/data";
 import { useRouter } from "next/navigation";
 
 const FavoriteButton = ({ recipe, children, className = "" }) => {
-  const route = useRouter();
+  const router = useRouter();
+
+  const {data: tokenData} = authClient.token();
+  const token = tokenData?.token;
 
   const { data } = useSession();
   const user = data?.user;
@@ -31,54 +34,6 @@ const FavoriteButton = ({ recipe, children, className = "" }) => {
     loadFavorite();
   }, [user, recipe._id]);
 
-  // const handleFavorite = async () => {
-  //   if (!user) {
-  //     toast.error("Please login first");
-  //     route.push("/signup");
-  //     return;
-  //   }
-  //   const previousFavorite = favorite;
-  //   const previousCount = count;
-
-  //   setFavorite(!previousFavorite);
-  //   setCount((prev) => (previousFavorite ? prev - 1 : prev + 1));
-
-  //   try {
-  //     // const res = await toggleFavorite(recipe._id, user.email);
-  //     // setFavorite(res.favorite);
-
-  //     const res = await toggleFavorite(recipe._id, user.email);
-
-  //     setFavorite(res.isFavorite);
-  //     setCount(res.favoriteCount);
-  //     Router.refresh();
-  //   } catch (err) {
-  //     console.log(err);
-  //     toast.error("Something went wrong");
-
-  //     setFavorite(previousFavorite);
-  //     setCount(previousCount);
-  //   }
-  // };
-
-  // const handleFavorite = async () => {
-  //   if (!user) {
-  //     toast.error("Please login first");
-  //     return;
-  //   }
-
-  //   try {
-  //     const res = await toggleFavorite(recipe._id, user.email);
-
-  //     setFavorite(res.isFavorite);
-  //     setCount(res.favoriteCount);
-  //   } catch (err) {
-  //     console.log(err);
-  //     toast.error("Something went wrong");
-  //   }
-  // };
-
-
 
   const handleFavorite = async () => {
   if (!user) {
@@ -94,7 +49,7 @@ const FavoriteButton = ({ recipe, children, className = "" }) => {
   setCount(previousFavorite ? previousCount - 1 : previousCount + 1);
 
   try {
-    const res = await toggleFavorite(recipe._id, user.email);
+    const res = await toggleFavorite(recipe._id, user.email, token);
 
     setFavorite(res.isFavorite);
     setCount(res.favoriteCount);

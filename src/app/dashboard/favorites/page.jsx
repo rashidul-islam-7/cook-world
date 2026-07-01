@@ -1,6 +1,13 @@
 import FavoritesRecipe from "@/components/DashboardPage/FavoritesRecipe/FavoritesRecipe";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-const FavoritesPage = () => {
+const FavoritesPage = async () => {
+
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
+
   return (
     <section>
       {/* Header */}
@@ -12,7 +19,7 @@ const FavoritesPage = () => {
         </p>
       </div>
 
-      <FavoritesRecipe />
+      <FavoritesRecipe token={token} />
     </section>
   );
 };
