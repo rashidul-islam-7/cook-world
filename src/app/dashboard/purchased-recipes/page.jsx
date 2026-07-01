@@ -10,10 +10,6 @@ import Link from "next/link";
 import { FaShoppingBag } from "react-icons/fa";
 
 const PurchasedRecipesPage = async () => {
-  const { token } = await auth.api.getToken({
-    headers: await headers(),
-  });
-
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -28,7 +24,7 @@ const PurchasedRecipesPage = async () => {
     );
   }
 
-  const purchasedRecipes = await getPurchasedRecipes(user.id, token);
+  const purchasedRecipes = await getPurchasedRecipes(user.id);
 
   return (
     <section className="">

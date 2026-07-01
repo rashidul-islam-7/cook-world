@@ -7,7 +7,7 @@ const JoinCommunity = () => {
     <section
     >
       <div>
-        <div className="pb-10 relative overflow-hidden shadow-2xl shadow-orange-500/10 group">
+        <div className="md:pb-10 pb-6 relative overflow-hidden shadow-2xl shadow-orange-500/10 group">
           {/* Background Image with Zoom Effect on Hover */}
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
@@ -32,7 +32,7 @@ const JoinCommunity = () => {
             </span>
 
             {/* Heading */}
-            <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight max-w-4xl leading-[1.15]">
+            <h2 className="mt-4 text-2xl sm:text-3xl lg:text-5xl font-black tracking-tight max-w-4xl md:leading-[1.10]">
               Share Your Favorite Recipes <br className="hidden md:block" />
               <span className="bg-linear-to-r from-orange-400 via-amber-300 to-orange-400 bg-clip-text text-transparent">
                 With The World
@@ -40,13 +40,13 @@ const JoinCommunity = () => {
             </h2>
 
             {/* Subtext */}
-            <p className="mt-5 text-base sm:text-lg text-gray-300 max-w-2xl font-medium leading-relaxed">
+            <p className="mt-3 md:mt-5 text-base sm:text-lg text-gray-300 max-w-2xl font-medium leading-relaxed">
               Join thousands of food enthusiasts who create, share, and discover
               amazing recipes every day. Elevate your culinary journey today.
             </p>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-8 sm:gap-y-0 mt-16 max-w-3xl w-full border-t border-b border-white/10 py-5 sm:divide-x sm:divide-white/10">
+            <div className="flex justify-center items-center flex-wrap gap-8 sm:gap-y-0 my-5 md:my-8 max-w-3xl w-full border-t border-b border-white/10 py-5 sm:divide-x sm:divide-white/10">
               <div className="px-4 transform transition duration-300 hover:scale-105">
                 <h3 className="text-3xl lg:text-4xl font-black text-gray-100 tracking-tight">
                   5M+

@@ -34,10 +34,6 @@ const RecipeForm = ({ recipe }) => {
       toast.error("Please login first");
       return;
     }
-
-    const {data:tokenData} = await authClient.token();
-    const token = tokenData?.token;
-
     try {
       setLoading(true);
 
@@ -100,7 +96,7 @@ const RecipeForm = ({ recipe }) => {
 
       // update recipe
       if (isUpdate) {
-        const data = await updateRecipe(recipe._id, recipeData, token);
+        const data = await updateRecipe(recipe._id, recipeData);
 
         if (data.modifiedCount > 0) {
           toast.success("Recipe updated successfully!");
@@ -119,7 +115,7 @@ const RecipeForm = ({ recipe }) => {
           createdAt: new Date(),
         };
 
-        const data = await addRecipe(newRecipe, token);
+        const data = await addRecipe(newRecipe);
 
         if (data.insertedId) {
           toast.success("Recipe added successfully!");

@@ -6,9 +6,7 @@ const PremiumPage = () => {
   return (
     <section className="max-w-5xl mx-auto">
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold">
-          Upgrade To Premium
-        </h1>
+        <h1 className="text-4xl font-bold">Upgrade To Premium</h1>
 
         <p className="mt-3 text-gray-500">
           Unlock unlimited recipe uploads and premium features.
@@ -21,17 +19,11 @@ const PremiumPage = () => {
             <FaCrown className="text-4xl text-yellow-500" />
           </div>
 
-          <h2 className="mt-5 text-3xl font-bold">
-            Premium Membership
-          </h2>
+          <h2 className="mt-5 text-3xl font-bold">Premium Membership</h2>
 
-          <p className="mt-2 text-gray-500">
-            One time payment
-          </p>
+          <p className="mt-2 text-gray-500">One time payment</p>
 
-          <h3 className="mt-5 text-5xl font-bold text-orange-500">
-            $9.99
-          </h3>
+          <h3 className="mt-5 text-5xl font-bold text-orange-500">$9.99</h3>
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -56,9 +48,7 @@ const PremiumPage = () => {
           </div>
         </div>
 
-        <button
-          className="mt-10 w-full rounded-xl bg-orange-500 py-4 text-lg font-semibold text-white hover:bg-orange-600"
-        >
+        <button className="mt-10 w-full rounded-xl bg-orange-500 py-4 text-lg font-semibold text-white hover:bg-orange-600">
           Continue To Payment
         </button>
       </div>

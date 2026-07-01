@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const FavoriteButton = ({ recipe, children, className = "" }) => {
   const route = useRouter();
-  
+
   const { data } = useSession();
   const user = data?.user;
 
@@ -31,30 +31,35 @@ const FavoriteButton = ({ recipe, children, className = "" }) => {
     loadFavorite();
   }, [user, recipe._id]);
 
+  // const handleFavorite = async () => {
+  //   if (!user) {
+  //     toast.error("Please login first");
+  //     route.push("/signup");
+  //     return;
+  //   }
+  //   const previousFavorite = favorite;
+  //   const previousCount = count;
 
-  const handleFavorite = async () => {
-      if (!user) {
-        toast.error("Please login first");
-        route.push("/signup");
-        return;
-      }
-      const previousFavorite = favorite;
-      const previousCount = count;
-  
-      setFavorite(!previousFavorite);
-      setCount((prev) => (previousFavorite ? prev - 1 : prev + 1));
-  
-      try {
-        const res = await toggleFavorite(recipe._id, user.email);
-        setFavorite(res.favorite);
-      } catch (err) {
-        console.log(err);
-        toast.error("Something went wrong");
-  
-        setFavorite(previousFavorite);
-        setCount(previousCount);
-      }
-    };
+  //   setFavorite(!previousFavorite);
+  //   setCount((prev) => (previousFavorite ? prev - 1 : prev + 1));
+
+  //   try {
+  //     // const res = await toggleFavorite(recipe._id, user.email);
+  //     // setFavorite(res.favorite);
+
+  //     const res = await toggleFavorite(recipe._id, user.email);
+
+  //     setFavorite(res.isFavorite);
+  //     setCount(res.favoriteCount);
+  //     Router.refresh();
+  //   } catch (err) {
+  //     console.log(err);
+  //     toast.error("Something went wrong");
+
+  //     setFavorite(previousFavorite);
+  //     setCount(previousCount);
+  //   }
+  // };
 
   // const handleFavorite = async () => {
   //   if (!user) {
@@ -73,6 +78,35 @@ const FavoriteButton = ({ recipe, children, className = "" }) => {
   //   }
   // };
 
+
+
+  const handleFavorite = async () => {
+  if (!user) {
+    toast.error("Please login first");
+    router.push("/signup");
+    return;
+  }
+
+  const previousFavorite = favorite;
+  const previousCount = count;
+
+  setFavorite(!previousFavorite);
+  setCount(previousFavorite ? previousCount - 1 : previousCount + 1);
+
+  try {
+    const res = await toggleFavorite(recipe._id, user.email);
+
+    setFavorite(res.isFavorite);
+    setCount(res.favoriteCount);
+
+    // router.refresh();
+  } catch (err) {
+    setFavorite(previousFavorite);
+    setCount(previousCount);
+
+    toast.error("Something went wrong");
+  }
+};
   return (
     <button
       onClick={handleFavorite}

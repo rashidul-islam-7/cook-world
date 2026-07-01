@@ -15,6 +15,7 @@ const DashboardPage = async () => {
   const user = session?.user;
 
   const my_recipe_data = await getMyRecipes(user?.email);
+  console.log("my_recipe_data", my_recipe_data);
 
   return (
     <div>

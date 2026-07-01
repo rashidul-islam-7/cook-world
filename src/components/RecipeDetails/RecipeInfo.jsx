@@ -12,22 +12,22 @@ const RecipeInfo = ({ recipe }) => {
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-4">
-        <div className="rounded-xl bg-base-200 p-4">
+        <div className="rounded-xl bg-gray-400/20 p-4">
           <p className="text-sm">Category</p>
           <h4 className="font-semibold">{recipe?.category}</h4>
         </div>
 
-        <div className="rounded-xl bg-base-200 p-4">
+        <div className="rounded-xl bg-gray-400/20 p-4">
           <p className="text-sm">Cuisine</p>
           <h4 className="font-semibold">{recipe?.cuisineType}</h4>
         </div>
 
-        <div className="rounded-xl bg-base-200 p-4">
+        <div className="rounded-xl bg-gray-400/20 p-4">
           <p className="text-sm">Difficulty</p>
           <h4 className="font-semibold">{recipe?.difficultyLevel}</h4>
         </div>
 
-        <div className="rounded-xl bg-base-200 p-4">
+        <div className="rounded-xl bg-gray-400/20 p-4">
           <div className="flex items-center gap-2">
             <FaClock />
             <h4 className="font-semibold">{recipe?.preparationTime} min</h4>

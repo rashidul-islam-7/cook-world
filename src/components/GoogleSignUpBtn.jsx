@@ -24,16 +24,7 @@ const GoogleSignUpButton = () => {
       type="button"
       onClick={handleGoogleSignUp}
       disabled={googleLoading}
-      className="
-        mt-6
-        flex
-        w-full
-        items-center
-        justify-center
-        gap-3
-        rounded-xl
-        border
-        border-gray-300
+      className="mt-6 flex w-full items-center justify-center gap-3 rounded-xl border border-gray-300
         bg-white
         px-4
         py-2

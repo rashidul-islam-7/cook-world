@@ -9,9 +9,6 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 const MyRecipesPage = async () => {
-  const { token } = await auth.api.getToken({
-    headers: await headers(),
-  });
 
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -23,7 +20,7 @@ const MyRecipesPage = async () => {
     redirect("/login");
   }
 
-  const myRecipeData = await getMyRecipes(email, token);
+  const myRecipeData = await getMyRecipes(email);
 
   return (
     <section className="">

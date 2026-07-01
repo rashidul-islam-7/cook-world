@@ -24,7 +24,7 @@ const RecipeActions = ({ recipe }) => {
     <div className="mt-6 space-y-3">
       <LikeButton
         recipe={recipe}
-        className={"btn w-full bg-red-500 hover:bg-red-700 text-white"}
+        className={"btn w-full bg-blue-400 hover:bg-blue-500 text-white"}
       >
         {" "}
         Like Recipe
@@ -51,7 +51,7 @@ const RecipeActions = ({ recipe }) => {
         </button>
       </form>
 
-      <button className="btn w-full btn-outline rounded-full mt-5">
+      <button className="btn w-full btn-outline rounded-full bg-red-500 hover:bg-red-700 text-white">
         <FaFlag />
         Report Recipe
       </button>
