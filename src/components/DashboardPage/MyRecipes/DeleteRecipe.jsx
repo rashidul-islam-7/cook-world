@@ -9,7 +9,9 @@ const DeleteRecipe = ({ recipeId }) => {
   const router = useRouter();
 
   const handleDelete = async (id) => {
-    const result = await deleteMyRecipe(id);
+    const { data: tokenData } = await authClient.token();
+    const token = tokenData?.token;
+    await deleteMyRecipe(id, token);
     // Refresh page data
     router.refresh();
   };

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { FaHeart, FaEye, FaTrashAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { getMyFavorites, toggleFavorite } from "@/lib/data";
 import { toast } from "react-toastify";
 import Image from "next/image";
@@ -18,7 +18,11 @@ const FavoritesRecipe = () => {
     if (!user) return;
 
     const loadFavorites = async () => {
-      const data = await getMyFavorites(user.email);
+
+      const {data:tokenData} = await authClient.token();
+      const token = tokenData?.token;
+
+      const data = await getMyFavorites(user.email, token);
       setFavoriteRecipes(data);
     };
 

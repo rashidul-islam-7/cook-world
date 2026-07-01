@@ -35,10 +35,7 @@ const NavBar = () => {
 
   return (
     <div className="relative">
-      <div
-        className="navbar bg-gray-100
-dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0 w-full z-50 "
-      >
+      <div className="navbar bg-gray-100 dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0 w-full z-50 ">
         {/* Left */}
         <div className="navbar-start">
           {/* Mobile Menu */}
@@ -94,7 +91,14 @@ dark:bg-gray-900 shadow-sm px-4 py-2 md:py-4 sm:px-8 md:px-16 fixed top-0 left-0
             href={"/"}
             className="text-2xl lg:text-3xl font-extrabold -ml-2 "
           >
-            Cook<span className="text-orange-500">World</span>
+            <span className="md:block hidden">
+              {" "}
+              Cook<span className="text-orange-500">World</span>
+            </span>
+            <span className="block md:hidden">
+              {" "}
+              C<span className="text-orange-500">W</span>
+            </span>
           </Link>
         </div>
 

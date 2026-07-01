@@ -2,7 +2,6 @@ export const metadata = {
   title: "Purchased Recipes | CookWorld",
 };
 
-
 import { auth } from "@/lib/auth";
 import { getPurchasedRecipes } from "@/lib/data";
 import { headers } from "next/headers";
@@ -11,6 +10,9 @@ import Link from "next/link";
 import { FaShoppingBag } from "react-icons/fa";
 
 const PurchasedRecipesPage = async () => {
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
 
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -26,7 +28,7 @@ const PurchasedRecipesPage = async () => {
     );
   }
 
-  const purchasedRecipes = await getPurchasedRecipes(user.id);
+  const purchasedRecipes = await getPurchasedRecipes(user.id, token);
 
   return (
     <section className="">
@@ -114,10 +116,7 @@ const PurchasedRecipesPage = async () => {
           {/* Mobile */}
           <div className="grid gap-4 md:hidden">
             {purchasedRecipes.map((recipe) => (
-              <div
-                key={recipe._id}
-                className="rounded-xl bg-white p-4 shadow"
-              >
+              <div key={recipe._id} className="rounded-xl bg-white p-4 shadow">
                 <div className="flex gap-4">
                   <Image
                     src={recipe.recipeImage}

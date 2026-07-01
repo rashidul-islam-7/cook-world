@@ -1,5 +1,6 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
+
 export const getAllRecipes = async () => {
   try {
     const res = await fetch(`${API_URL}/recipes`, {
@@ -20,6 +21,7 @@ export const getAllRecipes = async () => {
 export const getRecipeById = async (id) => {
   const res = await fetch(`${API_URL}/recipes/${id}`, {
     cache: "no-store",
+   
   });
 
   if (!res.ok) {
@@ -29,9 +31,13 @@ export const getRecipeById = async (id) => {
   return res.json();
 };
 
-export const getMyRecipes = async (email) => {
+export const getMyRecipes = async (email, token) => {
   try {
-    const res = await fetch(`${API_URL}/my-recipes?email=${email}`);
+    const res = await fetch(`${API_URL}/my-recipes?email=${email}`,{
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
 
     if (!res.ok) {
       throw new Error("Failed to fetch recipes");
@@ -44,9 +50,12 @@ export const getMyRecipes = async (email) => {
   }
 };
 
-export const deleteMyRecipe = async (id) => {
+export const deleteMyRecipe = async (id, token) => {
   try {
     const res = await fetch(`${API_URL}/recipes/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      },
       method: "DELETE",
     });
 
@@ -122,11 +131,12 @@ export const getFavoriteStatus = async (recipeId, userEmail) => {
 };
 
 // Add Recipe
-export const addRecipe = async (recipeData) => {
-  const res = await fetch(`${API_URL}/recipes`, {
+export const addRecipe = async (recipeData, token) => {
+  const res = await fetch(`${API_URL}/post-recipes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     },
     body: JSON.stringify(recipeData),
   });
@@ -141,11 +151,12 @@ export const addRecipe = async (recipeData) => {
 };
 
 // Update Recipe
-export const updateRecipe = async (recipeId, recipeData) => {
+export const updateRecipe = async (recipeId, recipeData, token) => {
   const res = await fetch(`${API_URL}/recipes/${recipeId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
     },
     body: JSON.stringify(recipeData),
   });
@@ -159,8 +170,11 @@ export const updateRecipe = async (recipeId, recipeData) => {
   return data;
 };
 
-export const getMyFavorites = async (userEmail) => {
+export const getMyFavorites = async (userEmail, token) => {
   const res = await fetch(`${API_URL}/my-favorites?userEmail=${userEmail}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
     cache: "no-store",
   });
 
@@ -171,8 +185,12 @@ export const getMyFavorites = async (userEmail) => {
   return res.json();
 };
 
-export const getMyPurchases = async (userEmail) => {
-  const res = await fetch(`${API_URL}/my-purchases?userEmail=${userEmail}`);
+export const getMyPurchases = async (userEmail, token) => {
+  const res = await fetch(`${API_URL}/my-purchases?userEmail=${userEmail}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+  });
 
   if (!res.ok) {
     throw new Error("Failed");
@@ -208,8 +226,11 @@ export const savePurchasedRecipe = async (data) => {
   return resData;
 };
 
-export const getPurchasedRecipes = async (userId) => {
+export const getPurchasedRecipes = async (userId, token) => {
   const res = await fetch(`${API_URL}/purchased-recipes/${userId}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
     cache: "no-store",
   });
 

@@ -81,7 +81,7 @@ const SignInClient = () => {
       <div className="">
         {/* Header */}
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-3xl shadow-lg">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-r from-orange-500 via-red-500 to-pink-500 text-3xl shadow-lg">
             🍽️
           </div>
 

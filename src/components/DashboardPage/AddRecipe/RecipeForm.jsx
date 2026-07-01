@@ -35,6 +35,9 @@ const RecipeForm = ({ recipe }) => {
       return;
     }
 
+    const {data:tokenData} = await authClient.token();
+    const token = tokenData?.token;
+
     try {
       setLoading(true);
 
@@ -94,9 +97,10 @@ const RecipeForm = ({ recipe }) => {
         updatedAt: new Date(),
       };
 
+
       // update recipe
       if (isUpdate) {
-        const data = await updateRecipe(recipe._id, recipeData);
+        const data = await updateRecipe(recipe._id, recipeData, token);
 
         if (data.modifiedCount > 0) {
           toast.success("Recipe updated successfully!");
@@ -115,7 +119,7 @@ const RecipeForm = ({ recipe }) => {
           createdAt: new Date(),
         };
 
-        const data = await addRecipe(newRecipe);
+        const data = await addRecipe(newRecipe, token);
 
         if (data.insertedId) {
           toast.success("Recipe added successfully!");

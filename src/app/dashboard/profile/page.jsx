@@ -69,8 +69,8 @@ const ProfilePage = () => {
             <p className="text-sm text-gray-500">{user?.email}</p>
 
             {isPremium ? (
-              <span className="mt-4 flex items-center gap-2 rounded-full bg-yellow-100/30 shadow px-4 py-1.5 text-sm font-semibold text-yellow-700">
-                <FaCrown className="mb-0.5 text-yellow-300" />
+              <span className="mt-4 flex items-center gap-2 rounded-full bg-yellow-100/30 shadow px-4 py-1.5 text-sm font-semibold">
+                <FaCrown className="mb-0.5 text-yellow-400" />
                 Premium Member
               </span>
             ) : (

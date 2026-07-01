@@ -3,7 +3,7 @@ import { IoFastFoodSharp } from "react-icons/io5";
 
 const Loading = ({children}) => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-white">
+    <div className="flex min-h-screen items-center justify-center">
       <div className="flex flex-col items-center">
         <div className="relative">
           {/* Rotating Ring */}
