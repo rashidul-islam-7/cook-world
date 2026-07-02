@@ -5,12 +5,12 @@ import FeatureRecipeButton from "./FeatureButton";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
-const RecipeRow = async({ recipe, index }) => {
-
-  const {token} = await auth.api.getToken({
+const RecipeRow = async ({ recipe, index }) => {
+  const { token } = await auth.api.getToken({
     headers: await headers(),
   });
 
+  console.log("RecipeRow recipe:", recipe);
 
   return (
     <tr className="transition hover:bg-gray-50 dark:hover:bg-gray-800">
@@ -18,7 +18,7 @@ const RecipeRow = async({ recipe, index }) => {
       <td className="whitespace-nowrap font-semibold">{index + 1}</td>
 
       {/* Recipe */}
-      <td className="min-w-[220px]">
+      <td className="min-w-[180px]">
         <div className="flex items-center gap-3">
           <Image
             src={recipe.recipeImage}
@@ -39,7 +39,7 @@ const RecipeRow = async({ recipe, index }) => {
       </td>
 
       {/* Author */}
-      <td className="min-w-[220px]">
+      <td className="min-w-[170px]">
         <h4 className="truncate font-medium">{recipe.authorName}</h4>
 
         <p className="truncate text-xs text-gray-500">{recipe.authorEmail}</p>
@@ -47,7 +47,7 @@ const RecipeRow = async({ recipe, index }) => {
 
       {/* Category */}
       <td className="whitespace-nowrap">
-        <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-600">
+        <span className="rounded-full bg-orange-100 px-2 py-1 text-xs font-semibold text-orange-600">
           {recipe.category}
         </span>
       </td>
@@ -58,15 +58,13 @@ const RecipeRow = async({ recipe, index }) => {
       </td>
 
       {/* Actions */}
-      <td className="min-w-[180px]">
-        <div className="flex flex-wrap items-center justify-center gap-2">
+      <td className="min-w-[250px]">
+        <div className="flex flex-wrap items-center justify-between">
           <EditRecipeButton recipe={recipe} />
-
           <DeleteRecipeButton recipeId={recipe._id} token={token} />
-
           <FeatureRecipeButton
             recipeId={recipe._id}
-            featured={recipe.featured}
+            initialFeatured={recipe.featured}
             token={token}
           />
         </div>

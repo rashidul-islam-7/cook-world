@@ -813,12 +813,11 @@ export const addRecipe = async (recipeData, token) => {
 };
 
 // Update/edit Recipe
-export const updateRecipe = async (recipeId, recipeData, token) => {
+export const updateRecipe = async (recipeId, recipeData) => {
   const res = await fetch(`${API_URL}/recipes/${recipeId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(recipeData),
   });
@@ -869,9 +868,12 @@ export const savePurchasedRecipe = async (data) => {
 // ---------------- Admin API calls ----------------
 
 
-export const getDashboardOverview = async () => {
+export const getDashboardOverview = async (token) => {
   const res = await fetch(`${API_URL}/admin/dashboard`, {
     cache: "no-store",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {
@@ -882,9 +884,12 @@ export const getDashboardOverview = async () => {
 };
 
 // get all users
-export const getAllUsers = async () => {
+export const getAllUsers = async (token) => {
   const res = await fetch(`${API_URL}/admin/users`, {
     cache: "no-store",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {
@@ -918,9 +923,12 @@ export const unblockUser = async (id) => {
   return res.json();
 };
 
-export const getAllRecipesForAdmin = async () => {
+export const getAllRecipesForAdmin = async (token) => {
   const res = await fetch(`${API_URL}/admin/recipes`, {
     cache: "no-store",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {
@@ -931,9 +939,12 @@ export const getAllRecipesForAdmin = async () => {
 };
 
 // delete recipe from all recipes
-export const deleteRecipe = async (id) => {
+export const deleteRecipe = async (id, token) => {
   const res = await fetch(`${API_URL}/admin/recipes/${id}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {

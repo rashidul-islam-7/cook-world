@@ -16,9 +16,9 @@ const RecipesTable = async ({ recipes }) => {
   return (
     <>
       {/* ================= Desktop Table ================= */}
-      <div className="hidden w-full overflow-x-auto rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900 md:block">
+      <div className="hidden w-full overflow-x-auto rounded-xl border bg-gray-400 text-white shadow-sm dark:border-gray-700 dark:bg-gray-900 md:block">
         <table className="table w-full">
-          <thead className="bg-gray-100 dark:bg-gray-800">
+          <thead className="bg-gray-400 text-white ">
             <tr>
               <th>#</th>
               <th>Recipe</th>
@@ -42,7 +42,7 @@ const RecipesTable = async ({ recipes }) => {
         {recipes.map((recipe, index) => (
           <div
             key={recipe._id}
-            className="rounded-2xl border bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+            className="rounded-2xl border p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900"
           >
             {/* Top Section */}
             <div className="flex items-start gap-3">
@@ -86,7 +86,7 @@ const RecipesTable = async ({ recipes }) => {
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-5 flex flex-wrap justify-center gap-2 border-t pt-4">
+            <div className="mt-2 flex flex-wrap justify-between items-center gap-2 border-t pt-2">
               <EditRecipeButton recipe={recipe} />
 
               <DeleteRecipeButton recipeId={recipe._id} />

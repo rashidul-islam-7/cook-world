@@ -1,10 +1,16 @@
 import OverviewStatsCard from "@/components/DashboardPage/Overview/OverviewStatsCard";
+import { auth } from "@/lib/auth";
 import { getDashboardOverview } from "@/lib/data";
+import { headers } from "next/headers";
 import { FaUsers, FaUtensils, FaCrown, FaFlag } from "react-icons/fa";
 
 const AdminDashboard = async () => {
-  const overview = await getDashboardOverview();
-  console.log(overview)
+const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const overview = await getDashboardOverview(token);
+
 
   const statsCardsInfo = [
     {

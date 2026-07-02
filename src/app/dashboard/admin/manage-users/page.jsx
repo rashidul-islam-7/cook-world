@@ -2,12 +2,16 @@ export const metadata = {
   title: "Manage Users | CookWorld",
 };
 
-
 import UsersTable from "@/components/AdminDashboard/ManageUsers/UsersTable";
+import { auth } from "@/lib/auth";
 import { getAllUsers } from "@/lib/data";
+import { headers } from "next/headers";
 
 const ManageUsersPage = async () => {
-  const users = await getAllUsers();
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const users = await getAllUsers(token);
 
   return (
     <section className="p-6">

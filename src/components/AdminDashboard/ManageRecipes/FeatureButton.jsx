@@ -6,10 +6,17 @@ import { FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { featureRecipeAddDelete } from "@/lib/data";
 
-export default function FeatureRecipeButton({ recipeId, initialFeatured, token }) {
+export default function FeatureRecipeButton({
+  recipeId,
+  initialFeatured,
+  token,
+}) {
   const router = useRouter();
 
   const [isFeatured, setIsFeatured] = useState(initialFeatured);
+
+  // console.log("initialFeatured:", initialFeatured);
+  // console.log("isFeatured:", isFeatured);
 
   const handleFeature = async () => {
     const result = await featureRecipeAddDelete(recipeId, token);
@@ -26,7 +33,7 @@ export default function FeatureRecipeButton({ recipeId, initialFeatured, token }
   return (
     <button
       onClick={handleFeature}
-      className={`btn btn-sm text-white ${
+      className={`px-2 cursor-pointer py-1 rounded flex justify-center items-center text-white ${
         isFeatured
           ? "bg-red-500 hover:bg-red-600"
           : "bg-yellow-500 hover:bg-yellow-600"

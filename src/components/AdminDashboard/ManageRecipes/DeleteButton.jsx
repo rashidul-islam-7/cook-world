@@ -23,14 +23,14 @@ const DeleteRecipeButton = ({ recipeId, token }) => {
   return (
     <>
       <AlertDialog>
-        <Button
-          className=" px-3 rounded cursor-pointer bg-red-50 
-            text-red-600 text-sm font-semibold flex items-center gap-2 
+        <button
+          className=" px-2 py-1 rounded cursor-pointer bg-red-50 
+            text-red-600 text-sm font-semibold flex items-center  
             hover:bg-red-100 transition-all active:scale-95 "
         >
           <Trash2 size={12} />
           Delete
-        </Button>
+        </button>
 
         <AlertDialog.Backdrop>
           <AlertDialog.Container>
